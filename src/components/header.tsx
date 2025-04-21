@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 //  max-w-7xl to constraint the header
@@ -11,7 +10,7 @@ export default function Header2() {
           aria-label="Global"
         >
           <div className="flex md:flex-1 justify-start ">
-            <Link href="/extra" className="text-3xl font-bold">
+            <Link href="/" className="text-3xl font-bold">
             严
             </Link>
           </div>

@@ -34,3 +34,12 @@ export function getAllPosts() {
     .sort((post1, post2) => (post1.frontMatter.date > post2.frontMatter.date ? -1 : 1));
   return posts;
 }
+
+export function getExcerpt(content:string) {
+  // Remove markdown formatting
+  const plainText = content
+    .replace(/[#*`]/g, "")
+    .replace(/\[(.*?)\]\(.*?\)/g, "$1");
+  // Get first 150 characters
+  return plainText.trim().slice(0, 300) + (plainText.length > 300 ? "..." : "");
+};

@@ -7,22 +7,24 @@ export default function Home() {
 
   return (
     <div
-      className="mx-auto px-20 flex flex-col lg:flex-row lg:gap-x-72 items-center justify-center w-full h-full"
+      className="mx-auto px-20 flex flex-col lg:flex-row items-center justify-center w-full h-full"
       style={{ minHeight: "80vh" }}
     >
-      <div className="flex justify-between gap-x-7 mb-10 lg:mb-0">
-        <div>
-          <h1 className="text-right text-7xl font-semibold mb-5">Ryan</h1>
-          <h3 className="text-right text-xl font-medium">Software and</h3>
-          <h3 className="text-right text-xl font-medium">Game Developer</h3>
-        </div>
-        <div>
-          <h1 className="text-left text-7xl font-semibold mb-5">Yan</h1>
-          <h1 className="text-left text-7xl font-semibold">严</h1>
+      <div className="flex flex-col lg:flex-row flex-1 justify-center mb-3 lg:mb-0">
+        <div className="flex flex-row justify-between gap-x-7">
+          <div>
+            <h1 className="text-right text-7xl font-semibold mb-5">Ryan</h1>
+            <h3 className="text-right text-xl font-medium">Software and</h3>
+            <h3 className="text-right text-xl font-medium">Game Developer</h3>
+          </div>
+          <div>
+            <h1 className="text-left text-7xl font-semibold mb-5">Yan</h1>
+            <h1 className="text-left text-7xl font-semibold">严</h1>
+          </div>
         </div>
       </div>
 
-      <div className="text-center lg:text-left">
+      <div className="flex-1 text-center lg:text-left lg:pe-16">
         <h1>BLOG SECTION HERE</h1>
         <ul className="mx-auto mt-6 md:ps-8 space-y-4">
           {/* same as in blog section */}

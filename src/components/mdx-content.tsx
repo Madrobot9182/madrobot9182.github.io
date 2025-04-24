@@ -1,4 +1,3 @@
-// components/mdx-content.tsx
 "use client";
 
 import { MDXRemote } from 'next-mdx-remote';

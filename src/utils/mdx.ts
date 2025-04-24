@@ -19,6 +19,7 @@ export function getPostBySlug(slug: string) {
     const frontMatter: PostFrontMatter = {
       title: data.title || 'Untitled',
       date: data.date || new Date().toISOString(),
+      tags: data.tags || [],
       ...data
     };
 

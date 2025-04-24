@@ -2,7 +2,7 @@
 export interface PostFrontMatter {
     title: string;
     date: string;
-    // other frontmatter fields
+    tags: string[];
 }
 
 // A post itself

@@ -5,7 +5,7 @@ import { PostFrontMatter } from '@/types/blog';
 import { ProjectFrontMatter } from '@/types/project';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
-const projectsDirectory = path.join(process.cwd(), 'posts');
+const projectsDirectory = path.join(process.cwd(), 'projects');
 
 export function getPostSlugs() {
   return fs.readdirSync(postsDirectory);
@@ -13,7 +13,6 @@ export function getPostSlugs() {
 
 export function getProjectsSlugs() {
   return fs.readdirSync(projectsDirectory);
-
 }
 
 export function getPostBySlug(slug: string) {
@@ -59,10 +58,8 @@ export function getProjectBySlug(slug: string) {
   }
 
   const fullPath = path.join(projectFolder, `${realSlug}.mdx`);
-  const imagePath = path.join(projectsDirectory, `${projectFolder}.jpg`);
+  const imagePath = path.join(projectFolder, `cover.jpg`);
   const image = fs.readFileSync(imagePath, 'utf8');
-
-
 
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
@@ -79,7 +76,7 @@ export function getProjectBySlug(slug: string) {
 }
 
 export function getAllProjects() {
-  const slugs = getPostSlugs();
+  const slugs = getProjectsSlugs();
   const posts = slugs
     .map((slug) => getProjectBySlug(slug))
     .filter(post => post !== undefined)

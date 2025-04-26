@@ -5,10 +5,9 @@ export interface ProjectFrontMatter {
     tags: string[];
 }
 
-// A post itself
-    export interface Project {
+export interface Project {
     slug: string;
     frontMatter: ProjectFrontMatter;
     content: string;
-    image: ImageBitmap;   // TODO fix
+    image: URL | undefined;   // TODO fix
 }

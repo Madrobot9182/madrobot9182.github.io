@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from 'next/font/google'
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "next-themes";
 
-const inter = Inter({ subsets: ['latin'] , display:'swap'})
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: {default: "Ryan Yan Website", template: "%s | Ryan Yan"},
+  title: { default: "Ryan Yan Website", template: "%s | Ryan Yan" },
   description: "Software and Game developer. Portfolio and blog website",
 };
 
@@ -18,14 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ThemeProvider attribute="class">
-    <html lang="en" className={inter.className}>
+    <html suppressHydrationWarning lang="en" className={inter.className}>
       <body className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <ThemeProvider attribute="class">
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
-    </ThemeProvider>
   );
 }

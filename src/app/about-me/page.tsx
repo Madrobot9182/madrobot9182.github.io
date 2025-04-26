@@ -1,6 +1,8 @@
-import HorizontalLine from "@/components/horizontalLine";
+import HorizontalLine from "@/components/horizontal-line";
 import ProfilePfp from "@/images/ProfilePfp.jpg";
 import Image from "next/image";
+
+import { DiRust } from "react-icons/di";
 
 export default function AboutMe() {
   return (
@@ -23,7 +25,7 @@ export default function AboutMe() {
         <div className="flex flex-col max-w-md">
           <h3 className="text-center wrap text-md font-medium">
             | Computer Science, Specialization in AI | University of Alberta |
-            obligatory "I use arch btw" |
+            obligatory &quot;I use arch btw&quot; |
           </h3>
         </div>
       </div>
@@ -47,12 +49,12 @@ export default function AboutMe() {
         </p>
         <HorizontalLine />
         <h2 className="text-left wrap text-3xl font-semibold mt-5 mb-5">Technologies</h2>
-        <p>
+        <p className="mb-4">
         Lorem ipsum dolor sit amet, consecte
         </p>
         <ul className="list-disc ps-4">
           <li>
-            wooo
+            wooo <DiRust/>
           </li>
           <li>
             booo

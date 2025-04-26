@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/utils/mdx";
+import { getAllPosts, getExcerpt } from "@/utils/mdx";
 import Link from "next/link";
 
 export default function BlogIndex() {
@@ -30,12 +30,3 @@ export default function BlogIndex() {
     </div>
   );
 }
-
-const getExcerpt = (content: string) => {
-  // Remove markdown formatting
-  const plainText = content
-    .replace(/[#*`]/g, "")
-    .replace(/\[(.*?)\]\(.*?\)/g, "$1");
-  // Get first 150 characters
-  return plainText.trim().slice(0, 300) + (plainText.length > 300 ? "..." : "");
-};

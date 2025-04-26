@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { ThemeProvider } from "next-themes";
 
 const inter = Inter({ subsets: ['latin'] , display:'swap'})
 
@@ -17,6 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ThemeProvider attribute="class">
     <html lang="en" className={inter.className}>
       <body className="flex flex-col min-h-screen">
         <Header />
@@ -24,5 +26,6 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
+    </ThemeProvider>
   );
 }

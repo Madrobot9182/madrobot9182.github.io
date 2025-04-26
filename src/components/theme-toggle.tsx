@@ -2,6 +2,7 @@
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { useTheme } from "next-themes";
 
+// TODO Hydration error due to the conditional renderings
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   // const currentTheme = theme === 'system' ? systemTheme : theme;

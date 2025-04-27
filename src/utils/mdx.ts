@@ -59,7 +59,6 @@ export function getProjectBySlug(slug: string) {
 
   const fullPath = path.join(projectFolder, `${realSlug}.mdx`);
   const imagePath = path.join(projectFolder, `cover.jpg`);
-  const image = fs.readFileSync(imagePath, 'utf8');
 
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
@@ -72,7 +71,7 @@ export function getProjectBySlug(slug: string) {
       ...data
     };
 
-  return { slug: realSlug, frontMatter, content, image };
+  return { slug: realSlug, frontMatter, content, imagePath };
 }
 
 export function getAllProjects() {

@@ -9,5 +9,5 @@ export interface Project {
     slug: string;
     frontMatter: ProjectFrontMatter;
     content: string;
-    image: URL | undefined;   // TODO fix
+    imagePath: URL | undefined;   // TODO fix
 }

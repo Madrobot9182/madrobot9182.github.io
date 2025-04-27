@@ -1,27 +1,39 @@
 "use client";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
-// TODO Hydration error due to the conditional renderings
 export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  // const currentTheme = theme === 'system' ? systemTheme : theme;
+  const { theme, systemTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const currentTheme = theme === "system" ? systemTheme : theme;
+
+  // Prevent hydration errors by waiting for mount
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div className="flex justify-start items-center gap-x-2 md:gap-x-3">
       <button
-        onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
+        onClick={() =>
+          currentTheme == "dark" ? setTheme("light") : setTheme("dark")
+        }
         className="flex items-center gap-2"
         aria-label="Toggle dark mode"
       >
         <span className="text-sm font-semibold leading-none block md:hidden">
-        {theme == "light" ? "L" : "D"}
+          {currentTheme == "light" ? "L" : "D"}
         </span>
         <span className="text-sm font-semibold leading-none hidden md:block">
-          {theme == "light" ? "LIGHT" : "DARK"}
+          {currentTheme == "light" ? "LIGHT" : "DARK"}
         </span>
 
-        {theme == "light" ? (
+        {currentTheme == "light" ? (
           <MdOutlineLightMode size="1.5em" />
         ) : (
           <MdOutlineDarkMode size="1.5em" />

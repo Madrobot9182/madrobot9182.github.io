@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin, FaCopyright } from "react-icons/fa";
-import { MdMail } from "react-icons/md"; // TODO Add light/dark switch with next-theme
+import { MdMail } from "react-icons/md";
 import ThemeToggle from "./theme-toggle";
 import RssFeed from "./rss-feed";
 

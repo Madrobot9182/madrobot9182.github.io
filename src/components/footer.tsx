@@ -6,7 +6,7 @@ import RssFeed from "./rss-feed";
 export default function Footer() {
   return (
     <footer
-      className="mx-auto w-full h-12 bg-green-500 flex justify-between items-center px-4 md:px-6"
+      className="mx-auto w-full h-12 flex justify-between items-center px-4 md:px-6"
       aria-label="Global"
     >
       <div className="flex flex-1 justify-start items-center gap-x-4 md:gap-x-8">

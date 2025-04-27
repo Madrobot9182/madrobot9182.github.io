@@ -3,7 +3,7 @@ import Link from "next/link";
 //  max-w-7xl to constraint the header
 export default function Header() {
   return (
-    <header className="bg-amber-200">
+    <header>
       <nav
         className="mx-auto flex w-full h-12 justify-between items-center px-4 md:px-6"
         aria-label="Global"
@@ -18,7 +18,7 @@ export default function Header() {
           <h2 className="font-bold">-------- SEARCH BAR HERE --------</h2>
         </div> */}
 
-        <div className="flex md:flex-1 justify-end items-center gap-x-2 md:gap-x-6">
+        <div className="flex md:flex-1 justify-end items-center gap-x-4 md:gap-x-6">
           <Link href="/blog" className="underline">
             BLOG
           </Link>

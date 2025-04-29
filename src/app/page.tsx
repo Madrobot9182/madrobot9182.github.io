@@ -1,3 +1,4 @@
+import BlogIndexList from "@/components/blog-index-list";
 import { getAllPosts, getAllProjects, getExcerpt } from "@/utils/mdx";
 import Link from "next/link";
 
@@ -27,29 +28,7 @@ export default function Home() {
 
       <div className="flex-1 text-center lg:text-left lg:pe-16">
         <h1 className="font-medium text-4xl mb-0">Recent Blogs</h1>
-        <ul className="mx-auto mt-6 md:ps-8 space-y-4">
-          {/* same as in blog section */}
-          {posts.slice(0, 3).map((post) => (
-            <li key={post.slug} className="border-b pb-2">
-              <Link href={`/blog/${post.slug}`} className="hover:underline">
-                <h2 className="text-xl font-medium">
-                  {post.frontMatter.title}
-                </h2>
-                <p className="line-clamp-2 text-gray-600">
-                  {" "}
-                  {getExcerpt(post.content)}
-                </p>
-                <p className="text-gray-500">
-                  {new Date(post.frontMatter.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <BlogIndexList posts={posts.slice(0,3)} />
 
         <h1 className="font-medium text-4xl pt-12 mb-0">Recent Projects</h1>
         <ul className="mx-auto mt-6 md:ps-8 space-y-4">

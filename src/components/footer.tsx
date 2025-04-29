@@ -19,21 +19,21 @@ export default function Footer() {
         2025 Ryan Yan
       </div>
 
-      <div className="flex flex-1 justify-end items-center gap-x-2 md:gap-x-5">
+      <div className="flex flex-1 justify-end items-center gap-x-4 md:gap-x-6">
         <a href="https://github.com/Madrobot9182" target="_blank">
-          <FaGithub size="1.5em" />
+          <FaGithub size="2em" />
         </a>
         <a
           href="https://www.linkedin.com/in/ryan-yan-b296a4205/"
           target="_blank"
         >
-          <FaLinkedin size="1.5em" />
+          <FaLinkedin size="2em" />
         </a>
         <a
           href="mailto:madrobot9182@protonmail.com?subject=Getting%20in%20Contact&body=Hello,%20I'm%20interested%20in%20learning%20more.%20Please%20contact%20me:%20"
           target="_blank"
         >
-          <MdMail size="1.5em" />
+          <MdMail size="2em" />
         </a>
       </div>
     </footer>

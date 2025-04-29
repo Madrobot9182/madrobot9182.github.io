@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Project } from "../types/project";
 import { getExcerpt } from "@/utils/mdx";
 import { DateFormatter } from "@/utils/date-parser";
-
+import Image from "next/image";
 interface ProjectGridProps {
   projects: Project[];
 }
@@ -18,12 +18,12 @@ export default function ProjectIndexGrid({ projects }: ProjectGridProps) {
         >
           <h2 className="text-xl font-medium">{project.frontMatter.title}</h2>
           <p className="text-gray-500">{DateFormatter(project.frontMatter.date, project.frontMatter.dateFormat)}</p>
-          {/* <Image
-        src={project.imagePath}
-        width={300}
-        height={200}
-        alt={project.slug + " cover image"}
-      /> */}
+          <Image
+                src={project.image}
+                width={250}
+                height={140}
+                alt={project.slug + " cover image"}
+      />
           <p className="line-clamp-4">{getExcerpt(project.content)}</p>
         </Link>
       ))}

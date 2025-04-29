@@ -32,6 +32,7 @@ export function getPostBySlug(slug: string) {
     const frontMatter: PostFrontMatter = {
       title: data.title || 'Untitled',
       date: data.date || new Date().toISOString(),
+      dateFormat: data.dateFormat || "default",
       tags: data.tags || [],
       ...data
     };
@@ -67,6 +68,7 @@ export function getProjectBySlug(slug: string) {
     const frontMatter: ProjectFrontMatter = {
       title: data.title || 'Untitled',
       date: data.date || new Date().toISOString(),
+      dateFormat: data.dateFormat || "year",
       tags: data.tags || [],
       ...data
     };

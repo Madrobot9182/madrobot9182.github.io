@@ -2,6 +2,7 @@
 export interface ProjectFrontMatter {
     title: string;
     date: string;
+    dateFormat: string;
     tags: string[];
 }
 

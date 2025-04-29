@@ -2,6 +2,7 @@
 export interface PostFrontMatter {
     title: string;
     date: string;
+    dateFormat: string;
     tags: string[];
 }
 

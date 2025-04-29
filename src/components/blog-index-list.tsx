@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { Post } from "../types/blog";
 import { getExcerpt } from "@/utils/mdx";
+import { DateFormatter } from "@/utils/date-parser";
 
 interface BlogListProps {
   posts: Post[];
 }
 
-export default function BlogIndexList({ posts }: BlogListProps) {
+export default function BlogIndexList({ posts }: BlogListProps) {  
   return (
     <ul className="mx-auto mt-6 md:ps-8 space-y-4">
       {posts.map((post) => (
@@ -18,11 +19,7 @@ export default function BlogIndexList({ posts }: BlogListProps) {
               {getExcerpt(post.content)}
             </p>
             <p className="text-gray-500">
-              {new Date(post.frontMatter.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
+              {DateFormatter(post.frontMatter.date, post.frontMatter.dateFormat)}
             </p>
           </Link>
         </li>

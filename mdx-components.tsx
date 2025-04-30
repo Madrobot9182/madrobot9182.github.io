@@ -10,7 +10,7 @@ type ListItemProps = ComponentPropsWithoutRef<'li'>;
 type AnchorProps = ComponentPropsWithoutRef<'a'>;
 type BlockquoteProps = ComponentPropsWithoutRef<'blockquote'>;
 
-const components = {
+export const components = {
   h1: (props: HeadingProps) => (
     <h1 className="font-medium text-4xl pt-12 mb-0" {...props} />
   ),

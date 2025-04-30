@@ -8,7 +8,7 @@ import { ThemeProvider } from "next-themes";
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: { default: "Ryan Yan Website", template: "%s | Ryan Yan" },
+  title: { default: "Ryan's Website", template: "%s | Ryan Yan" },
   description: "Software and Game developer. Portfolio and blog website",
 };
 

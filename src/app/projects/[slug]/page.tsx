@@ -10,7 +10,7 @@ interface ProjectPostPageProps {
 
 export default async function ProjectPage({ params }: ProjectPostPageProps) {
   try {
-    const {slug} = await params
+    const {slug} = params
     const post = getProjectBySlug(slug);
     
     if (!post) {

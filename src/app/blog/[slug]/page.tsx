@@ -10,7 +10,7 @@ interface BlogPostPageProps {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   try {
-    const {slug} = await params
+    const {slug} = params
     const post = getPostBySlug(slug);
     
     if (!post) {

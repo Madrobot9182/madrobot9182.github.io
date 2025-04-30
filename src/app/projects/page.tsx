@@ -9,7 +9,7 @@ export default function ProjectGrid() {
       <h1 className="text-5xl font-bold text-center mb-6 md:text-left">
         Projects
       </h1>
-        <ProjectIndexGrid projects={projects}/>
+        <ProjectIndexGrid projects={projects} gridLayout="grid-cols-1 md:grid-cols-2 lg:grid-cols-3"/>
     </div>
   );
 }

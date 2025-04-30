@@ -1,6 +1,7 @@
 import BlogIndexList from "@/components/blog-index-list";
 import ProjectIndexGrid from "@/components/project-index-grid";
 import { getAllPosts, getAllProjects} from "@/utils/mdx";
+import Link from "next/link";
 
 // TODO find a way for outer div to properly fill the main div
 export default function Home() {
@@ -9,8 +10,8 @@ export default function Home() {
 
   return (
     <div
-      className="mx-auto px-20 flex flex-col lg:flex-row items-center justify-center w-full h-full"
-      style={{ minHeight: "80vh" }}
+      className="mx-auto px-6 flex flex-col lg:flex-row items-center justify-center w-full h-full"
+      style={{ minHeight: "90vh" }}
     >
       <div className="flex flex-col lg:flex-row flex-1 justify-center my-8 lg:my-0">
         <div className="flex flex-row justify-between gap-x-7">
@@ -27,11 +28,11 @@ export default function Home() {
       </div>
 
       <div className="flex-1 text-center lg:text-left lg:pe-16">
-        <h1 className="font-medium text-4xl mb-0">Recent Blogs</h1>
+        <Link href="/blog" className="hover:underline font-medium text-4xl mb-0">Recent Blogs</Link>
         <BlogIndexList posts={posts.slice(0,4)} />
 
-        <h1 className="font-medium text-4xl pt-12 mb-0">Recent Projects</h1>
-        <ProjectIndexGrid projects={projects.slice(0,3)} />
+        <Link href="/projects" className="hover:underline font-medium text-4xl mb-0">Recent Projects</Link>
+        <ProjectIndexGrid projects={projects.slice(0,2)} gridLayout="grid-cols-1 md:grid-cols-2" />
       </div>
     </div>
   );

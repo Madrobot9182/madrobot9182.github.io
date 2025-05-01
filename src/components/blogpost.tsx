@@ -1,6 +1,6 @@
-import { serialize } from "next-mdx-remote/serialize";
 import { Post } from "@/types/blog";
-import MDXContent from "./mdx-content";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { components } from "../../mdx-components";
 import { DateFormatter } from "@/utils/date-parser";
 
 interface BlogPostProps {
@@ -9,7 +9,6 @@ interface BlogPostProps {
 
 // Serialize the content in the server component
 export default async function BlogPost({ post }: BlogPostProps) {
-  const mdxSource = await serialize(post.content);
   const readLength = Math.ceil(post.content.length / 275).toPrecision(1);
   const tags = post.frontMatter.tags;
 
@@ -36,8 +35,9 @@ export default async function BlogPost({ post }: BlogPostProps) {
           {readLength} minute read
         </p>
       </div>
-      {/* Use client component to render MDX */}
-      <MDXContent source={mdxSource} />
+      <div className="wrapper">
+        <MDXRemote source={post.content} components={components} />
+      </div>
     </div>
   );
 }

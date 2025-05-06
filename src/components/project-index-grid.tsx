@@ -22,9 +22,10 @@ export default function ProjectIndexGrid({ projects, gridLayout }: ProjectGridPr
           <p className="text-gray-500 text-left mb-2">{DateFormatter(project.frontMatter.date, project.frontMatter.dateFormat)}</p>
           <Image
                 src={project.image || PlaceHolder}
-                width={250}
-                height={140}
                 alt={project.slug + " cover image"}
+                width={600}
+                height={400}
+                placeholder="blur"
                 className="self-center mb-4"
       />
           <p className="line-clamp-4">{getExcerpt(project.content)}</p>

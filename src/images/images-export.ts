@@ -1,9 +1,9 @@
 // Yes I manaully import all cover photos cause I'm/Nextjs is a hack
-import cover1 from "../../projects/game-hub/cover.jpg"
+import GameHubCover from "../../projects/game-hub/cover.avif"
 
 export const projectCovers = [
     {
-        image: cover1,
+        image: GameHubCover,
         slug: "game-hub",
     },
 ]

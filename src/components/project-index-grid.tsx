@@ -19,15 +19,18 @@ export default function ProjectIndexGrid({ projects, gridLayout }: ProjectGridPr
           key={project.slug}
         >
           <h2 className="text-xl font-medium text-left">{project.frontMatter.title}</h2>
-          <p className="text-gray-500 text-left mb-2">{DateFormatter(project.frontMatter.date, project.frontMatter.dateFormat)}</p>
+          <p className="text-gray-800 dark:text-zinc-300 text-left mb-2">{DateFormatter(project.frontMatter.date, project.frontMatter.dateFormat)}</p>
+          <div className="relative w-full min-h-42 px-3 py-2.5 mb-2">
           <Image
                 src={project.image || PlaceHolder}
                 alt={project.slug + " cover image"}
-                width={600}
-                height={400}
                 placeholder="blur"
-                className="self-center mb-4"
-      />
+                fill
+                style={{
+                  objectFit: 'contain',
+                }}
+            />
+            </div>
           <p className="line-clamp-4">{getExcerpt(project.content)}</p>
         </Link>
       ))}

@@ -26,10 +26,7 @@ export default function ThemeToggle() {
         className="flex items-center gap-2"
         aria-label="Toggle dark mode"
       >
-        <span className="text-sm font-semibold leading-none block md:hidden">
-          {currentTheme == "light" ? "L" : "D"}
-        </span>
-        <span className="text-sm font-semibold leading-none hidden md:block">
+        <span className="text-sm font-semibold leading-none">
           {currentTheme == "light" ? "LIGHT" : "DARK"}
         </span>
 

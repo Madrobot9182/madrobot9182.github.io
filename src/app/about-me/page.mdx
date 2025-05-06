@@ -1,0 +1,55 @@
+import HorizontalLine from "@/components/horizontal-line";
+import ProfilePfp from "@/images/ProfilePfp.jpg";
+import Image from "next/image";
+
+import { DiRust } from "react-icons/di";
+
+<div className="mx-auto flex flex-col justify-between items-center px-6 mb-10 md:max-w-7xl">
+  
+  <div className="mx-auto flex flex-col gap-x-7 mt-10 mb-10 justify-between items-center">
+    <div className="flex flex-row gap-6 mb-5">
+      <Image
+        src={ProfilePfp}
+        alt="Profile Picture"
+        width={200}
+        height={200}
+      />
+      <div>
+        <h1 className="text-left wrap text-7xl font-semibold mt-5">
+          Ryan
+        </h1>
+        <h1 className="text-left wrap text-7xl font-semibold">Yan</h1>
+      </div>
+    </div>
+    <div className="flex flex-col max-w-md">
+      <h3 className="text-center wrap text-md font-medium">
+        | Software and Game Developer | Computer Science, Specialization in AI | 
+        University of Alberta | obligatory &quot;I use arch btw&quot; |
+      </h3>
+    </div>
+  </div>
+
+  <div>
+    Sup! I am a computer science and mathematics student at the University of Alberta, specializing in artificial intelligence. I have a passion for creating interesting projects that intersect functionality and creativity. As a software developer, game developer, musician, and hardware enthusiast, I'm always trying to learn new skills and build upon current and emerging industries. 
+    <br/>
+    I have a wide variety of hobbies and endeavors, from 3D printing to composing music, playing and making video games, and programming vaarious software projects across the tech stack. See at my blog and project page for more details!
+    <br className='mb-6'/>
+
+    ---
+
+    # Technologies
+    ## A list of technologies, languages, and tools that I'm familiar with:
+    * Functional Languages
+      * C, C#, C++, Python, Java, Rust, Bash
+      * PyTorch, NumPy, Matplotlib, scikit-learn, pandas
+    * Databases
+      * SQL, Sqlite, MongoDB
+    * Mathematical Tools
+      * MatLab, Julia, Jupyter notebook
+    * Web Frameworks
+      * NextJS, React, Flutter, Tailwindcss, ChakraUI, HTML/CSS/Javascript
+    * Collaborative Software
+      * Github, Google software, Microsoft office, LibreOffice, Trello, Figma
+
+  </div>
+</div>

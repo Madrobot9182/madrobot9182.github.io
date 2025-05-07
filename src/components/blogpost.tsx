@@ -7,9 +7,9 @@ interface BlogPostProps {
   post: Post;
 }
 
-// Serialize the content in the server component
 export default async function BlogPost({ post }: BlogPostProps) {
-  const readLength = Math.ceil(post.content.length / 275).toPrecision(1);
+  const wordCount = post.content.split(/\s+/).filter(Boolean).length;
+  const readLength = Math.ceil(wordCount / 275).toPrecision(1);
   const tags = post.frontMatter.tags;
 
   return (
@@ -19,7 +19,6 @@ export default async function BlogPost({ post }: BlogPostProps) {
         <p className="text-gray-800 dark:text-zinc-300 font-medium">
           {DateFormatter(post.frontMatter.date, post.frontMatter.dateFormat)}
         </p>
-        {/* <p className="text-gray-800 dark:text-zinc-300 font-normal">{tags}</p> */}
         <div className="flex flex-wrap items-start justify-center gap-2">
           {tags.map((tag) => (
             <span

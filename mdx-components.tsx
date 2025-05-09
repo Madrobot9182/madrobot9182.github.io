@@ -2,6 +2,7 @@
 import React, { ComponentPropsWithoutRef } from 'react';
 import Link from 'next/link';
 import { highlight } from 'sugar-high';
+import Image, { ImageProps as NextImageProps } from 'next/image';
 
 type HeadingProps = ComponentPropsWithoutRef<'h1'>;
 type ParagraphProps = ComponentPropsWithoutRef<'p'>;
@@ -78,6 +79,11 @@ export const components = {
       </a>
     );
   },
+  
+  // img: (props: NextImageProps) => { TODO
+
+  // },
+
   code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => {
     const codeHTML = highlight(children as string);
     return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;

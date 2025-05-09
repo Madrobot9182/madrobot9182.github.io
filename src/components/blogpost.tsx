@@ -1,7 +1,9 @@
 import { Post } from "@/types/blog";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { type MDXRemoteOptions, MDXRemote } from "next-mdx-remote-client/rsc";
 import { components } from "../../mdx-components";
 import { DateFormatter } from "@/utils/date-parser";
+import recmaMdxImportReact from "recma-mdx-import-media";
+import recmaMdxChangeImport from "recma-mdx-change-imports"
 
 interface BlogPostProps {
   post: Post;
@@ -12,6 +14,16 @@ export default async function BlogPost({ post }: BlogPostProps) {
   const readLength = Math.ceil(wordCount / 275).toPrecision(1);
   const tags = post.frontMatter.tags;
 
+  const options: MDXRemoteOptions = {
+    mdxOptions: {
+      format: "mdx",
+      baseUrl: import.meta.url,
+      development: true,
+      recmaPlugins: [recmaMdxImportReact, recmaMdxChangeImport]
+    },
+    parseFrontmatter: true,
+  };
+  
   return (
     <div className="mx-auto my-8 max-w-7xl px-6">
       <h1 className="font-medium text-5xl mb-6">{post.frontMatter.title}</h1>
@@ -35,7 +47,7 @@ export default async function BlogPost({ post }: BlogPostProps) {
         </p>
       </div>
       <div className="wrapper">
-        <MDXRemote source={post.content} components={components} />
+        <MDXRemote source={post.content} components={components} options={options} />
       </div>
     </div>
   );

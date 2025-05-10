@@ -1,0 +1,39 @@
+---
+title: NeuralLearning-gui - A PyTorch NN frontend GUI
+date: 2024
+dateFormat: year
+tags: [AI, Pytorch, ML, Neural Networks, Python, Qt]
+---
+
+This program attempted to give a GUI interface for interacting with PyTorch and Tensorflow. It's made in Python and uses the [Qt UI framework](https://www.qt.io/product/framework) for the interface. Feel free to copy from my GitHub repository [here: NeuralLearning-gui](https://github.com/Madrobot9182/NeuralLearning-gui).
+<br/>
+The idea was that this program would let me change parameters without constantly changing lines in the code itself. Then on each subsequent run, the accuracy over epochs is saved and plotted on a graph (display result button) with everything labeled and colored for convenience. 
+<br/>
+The program itself is fairly light on dependencies, only relying on PyTorch, the standard data science Python libraries (Numpy, Matplotlib), and PyQt6. I followed the Pytorch documentation/examples, and copied optimizations from Meta's script used to train [Llama-3](https://github.com/meta-llama/llama3/blob/main/llama/model.py). Using PyQt honestly felt really clunky, since I was defining each component as its own object and adding it to the layout object like so:
+<br/>
+```python
+    # app.py
+    datasetLabel = QLabel("Dataset:")
+    self.datasetCombo = QComboBox()
+    self.datasetCombo.addItems(["MNIST", "FashionMNIST", "CIFAR10", "CIFAR100"])
+    self.datasetCombo.currentTextChanged.connect(self.updateModels)
+    #... For each textbox/dropdown/button
+
+    layout.addWidget(datasetLabel)
+    layout.addWidget(self.datasetCombo)
+    # ... For the rest of the components 
+```
+<br/>
+Which ended up being a wall of text in the init() function. Complexity gets even worse with different layouts and boxes, so my GUI ended up staying very simple. Of course, there are better and smarter ways of making Qt apps, would not recommend copying what I did here lol.
+<br/>
+Anyways, if you want to try out the program, the list of parameters is:
+<br />
+- Dataset: the dataset being used to test the model. I gave the options for datasets commonly used in simple NN, and more can be added from the Pytorch repository
+- Model: I wrote a couple of simple models, MLP/2 being the simplest linear layers and CNN for a convolution network.
+    - If a user want's to add their own models, they need to append the hard coded list of models in the Qt section. Eventually I'd like the program to detect everything in a models folder, so that won't be necessary.
+- Loss Function: the function used during training to determine the error between the training and testing sets. Common choices like Mean Square Error and Negative Log-Likelihood are provided
+- Optimizer: the function used to "optimize"/update the weights of the model during training. Common choices like Gradient Descent and Adagrad are provided
+- Device: to switch between using the GPU (CUDA/ROCm), or CPU
+- Batch Size: used to determine the size of batches that are updated ber Epochs. A value between 64 and 256 works just fine.
+- Learning Rate: The speed at which the model will learn. Test different values per model for the best result.
+- Epochs: number of full passes through the dataset. It can be thought of as iterations/loops of training.

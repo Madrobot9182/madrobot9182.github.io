@@ -13,11 +13,11 @@ type BlockquoteProps = ComponentPropsWithoutRef<'blockquote'>;
 
 export const components = {
   h1: (props: HeadingProps) => (
-    <h1 className="font-medium text-4xl pt-12 mb-0" {...props} />
+    <h1 className="font-bold text-4xl pt-8 pb-6 mb-0" {...props} />
   ),
   h2: (props: HeadingProps) => (
     <h2
-      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3"
+      className="text-gray-800 dark:text-zinc-200 font-bold text-xl pt-6 pb-3"
       {...props}
     />
   ),
@@ -29,7 +29,7 @@ export const components = {
   ),
   h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
   p: (props: ParagraphProps) => (
-    <p className="text-gray-800 dark:text-zinc-300 leading-snug" {...props} />
+    <p className="text-gray-800 dark:text-zinc-300 leading-snug pb-4" {...props} />
   ),
   ol: (props: ListProps) => (
     <ol
@@ -39,7 +39,7 @@ export const components = {
   ),
   ul: (props: ListProps) => (
     <ul
-      className="text-gray-800 dark:text-zinc-300 list-disc pl-5 space-y-1"
+      className="text-gray-800 dark:text-zinc-300 list-disc pl-5 space-y-1.5 pb-2"
       {...props}
     />
   ),
@@ -79,6 +79,7 @@ export const components = {
       </a>
     );
   },
+  hr: (props: ComponentPropsWithoutRef<'hr'>) => <hr className="border-zinc-300 dark:border-gray-800 my-4" {...props}/>,
   
   // img: (props: NextImageProps) => { TODO
 

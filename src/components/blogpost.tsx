@@ -18,7 +18,7 @@ export default async function BlogPost({ post }: BlogPostProps) {
     mdxOptions: {
       format: "mdx",
       baseUrl: import.meta.url,
-      development: true,
+      development: false,
       recmaPlugins: [recmaMdxImportReact, recmaMdxChangeImport]
     },
     parseFrontmatter: true,

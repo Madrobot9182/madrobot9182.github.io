@@ -37,3 +37,34 @@ export function DateFormatter(dateString: string, format: string): string {
       });
   }
 }
+
+export function getExcerpt(content: string) {
+  let plainText = content
+    // Remove JSX/React components and HTML tags
+    .replace(/<[^>]*>/g, '')
+    // Remove markdown headers
+    .replace(/^#{1,6}\s+/gm, '')
+    // Remove markdown bold/italic
+    .replace(/(\*\*|__)(.*?)\1/g, '$2')
+    .replace(/(\*|_)(.*?)\1/g, '$2')
+    // Remove markdown links
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    // Remove markdown images
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
+    // Remove code blocks and inline code
+    .replace(/```[\s\S]*?```/g, '')
+    .replace(/`([^`]*)`/g, '$1')
+    // Remove markdown lists
+    .replace(/^[\s]*[-*+]\s+/gm, '')
+    .replace(/^\d+\.\s+/gm, '')
+    // Remove blockquotes
+    .replace(/^>\s+/gm, '')
+    // Remove horizontal rules
+    .replace(/^[-*_]{3,}$/gm, '')
+    // Remove extra whitespace and newlines
+    .replace(/\n+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  return plainText.slice(0, 300) + (plainText.length > 300 ? "..." : "");
+}

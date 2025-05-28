@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Post } from "../types/blog";
-import { getExcerpt } from "@/utils/mdx";
+import { getExcerpt } from "@/utils/date-parser";
 import { DateFormatter } from "@/utils/date-parser";
 
 interface BlogListProps {

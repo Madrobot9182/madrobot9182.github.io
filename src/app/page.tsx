@@ -5,7 +5,7 @@ import Link from "next/link";
 
 // TODO find a way for outer div to properly fill the main div
 export default async function Home() {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   const projects = await getAllProjects();
 
   return (

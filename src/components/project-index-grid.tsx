@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Project } from "../types/project";
-import { getExcerpt } from "@/utils/mdx";
+import { getExcerpt } from "@/utils/date-parser";
 import { DateFormatter } from "@/utils/date-parser";
 import PlaceHolder from "../images/Placeholder.jpg";
 import Image from "next/image";

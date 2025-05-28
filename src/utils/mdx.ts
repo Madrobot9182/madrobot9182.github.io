@@ -1,7 +1,6 @@
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
-import sharp from "sharp"
 import { PostFrontMatter } from "@/types/blog";
 import { ProjectFrontMatter } from "@/types/project";
 import { projectCovers } from "@/images/images-export";
@@ -10,24 +9,24 @@ const postsDirectory = path.join(process.cwd(), "posts");
 const projectsDirectory = path.join(process.cwd(), "projects");
 
 export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory);
+  return fs.readdir(postsDirectory);
 }
 
 export function getProjectsSlugs() {
-  return fs.readdirSync(projectsDirectory);
+  return fs.readdir(projectsDirectory);
 }
 
-export function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string) {
   const realSlug = slug.replace(/\.mdx$/, ""); // Remove .mdx from filename
   const postFolder = path.join(postsDirectory, `${realSlug}`);
 
-  if (!fs.existsSync(postFolder)) {
+  if (!fs.stat(postFolder)) {
     return undefined;
   }
 
   const fullPath = path.join(postFolder, `${realSlug}.mdx`);
 
-  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const fileContents = await fs.readFile(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
   // Ensure the frontMatter has the required fields
@@ -40,16 +39,14 @@ export function getPostBySlug(slug: string) {
   };
 
   // Copy images to public folder
-  // const imageProcessedContent = processImagesInMDX(content, postFolder);
-  return { slug: realSlug, frontMatter, content };
+  const imageProcessedContent = await processImagesInMDX(content, postFolder);
+  return { slug: realSlug, frontMatter, content: imageProcessedContent };
 }
 
-export function getAllPosts() {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug))
+export async function getAllPosts() {
+  const slugs = await getPostSlugs();
+  const posts = (await Promise.all(slugs.map((slug) => getPostBySlug(slug))))
     .filter((post) => post !== undefined)
-    // sort posts by date in descending order
     .sort((post1, post2) => (post1.frontMatter.date > post2.frontMatter.date ? -1 : 1));
   return posts;
 }
@@ -58,13 +55,13 @@ export async function getProjectBySlug(slug: string) {
   const realSlug = slug.replace(/\.mdx$/, ""); // Remove .mdx from filename
   const projectFolder = path.join(projectsDirectory, `${realSlug}`);
 
-  if (!fs.existsSync(projectFolder)) {
+  if (!fs.stat(projectFolder)) {
     return undefined;
   }
 
   const fullPath = path.join(projectFolder, `${realSlug}.mdx`);
 
-  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const fileContents = await fs.readFile(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
   // Ensure the frontMatter has the required fields
@@ -84,7 +81,7 @@ export async function getProjectBySlug(slug: string) {
 }
 
 export async function getAllProjects() {
-  const slugs = getProjectsSlugs();
+  const slugs = await getProjectsSlugs();
   const posts = (await Promise.all(slugs.map((slug) => getProjectBySlug(slug))))
     .filter((post) => post !== undefined)
     .sort((post1, post2) => (post1.frontMatter.date > post2.frontMatter.date ? -1 : 1));
@@ -112,7 +109,7 @@ async function processImagesInMDX(mdxContent: string, mdxDirectory: string) {
 
     // Auto-detect if not provided
     if (!width || !height) {
-      //const sharp = require('sharp');
+      const sharp = require('sharp');
       const metadata = await sharp(fullImagePath).metadata();
       width = width || metadata.width;
       height = height || metadata.height;
@@ -123,23 +120,12 @@ async function processImagesInMDX(mdxContent: string, mdxDirectory: string) {
     const publicFullPath = path.join(process.cwd(), "/public", publicImagePath);
 
     // Ensure directory exists
-    fs.mkdir(path.dirname(publicFullPath), { recursive: true }, (err) => {
-      if (err) throw err;
-    });
-    fs.copyFile(fullImagePath, publicFullPath, (err) => {
-      if (err) throw err;
-    });
+    await fs.mkdir(path.dirname(publicFullPath), { recursive: true });
+    await fs.copyFile(fullImagePath, publicFullPath);
 
     // Replace import with public path
     processedContent = processedContent.replace(fullMatch, `<OptimizedImage src="${publicImagePath}" alt="${alt}" width={${width}} height={${height}} />`);
   }
 
   return processedContent;
-}
-
-export function getExcerpt(content: string) {
-  // Remove markdown formatting
-  const plainText = content.replace(/[#*`]/g, "").replace(/\[(.*?)\]\(.*?\)/g, "$1");
-  // Get first 150 characters
-  return plainText.trim().slice(0, 300) + (plainText.length > 300 ? "..." : "");
 }

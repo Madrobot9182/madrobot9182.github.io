@@ -30,10 +30,6 @@ export default function ProjectIndexGrid({ projects, gridLayout }: ProjectGridPr
               width={500}
               height={300}
               placeholder="empty"
-              sizes="(max-width: 768px) 100vw, 400px"
-              style={{
-                objectFit: "cover",
-              }}
             />
           </div>
           <p className="line-clamp-4">{getExcerpt(project.content)}</p>

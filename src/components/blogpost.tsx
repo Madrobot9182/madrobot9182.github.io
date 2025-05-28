@@ -11,7 +11,7 @@ interface BlogPostProps {
 
 export default async function BlogPost({ post }: BlogPostProps) {
   const wordCount = post.content.split(/\s+/).filter(Boolean).length;
-  const readLength = Math.ceil(wordCount / 275).toPrecision(1);
+  const readLength = Math.ceil(wordCount / 275);
   const tags = post.frontMatter.tags;
 
   const options: MDXRemoteOptions = {

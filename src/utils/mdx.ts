@@ -75,12 +75,13 @@ export async function getProjectBySlug(slug: string) {
 
   // Copy images to public folder
   const processedContent = await processImagesInMDX(content, projectFolder);
-
+  
   // Check if cover image exist
   let imageURL;
   if (!fs.stat(path.join(projectFolder, "cover.avif"))) {
     imageURL = undefined;
   } else {
+    processCoverImage(projectFolder);
     imageURL = path.join(`/projects`, `/${realSlug}`, "/cover.avif");
   }
   return { slug: realSlug, frontMatter, content: processedContent, imageURL };
@@ -94,7 +95,22 @@ export async function getAllProjects() {
   return posts;
 }
 
+async function processCoverImage(contentDirectory: string) {
+  // Copy any cover.avif image into public
+  const coverPath = path.join(contentDirectory, 'cover.avif');
+  // Comically jank but works - post|project
+  const parentFolderType = path.basename(path.dirname(contentDirectory)); 
+  const publicFolderPath = `/${parentFolderType}/${path.basename(contentDirectory)}`;
+  const publicCoverPath = path.join(process.cwd(), "/public", publicFolderPath);
+  
+  try {
+    await fs.mkdir(publicCoverPath, { recursive: true });
+    await fs.copyFile(coverPath, path.join(publicCoverPath, "cover.avif"));
+  } catch (err) {console.warn(err)} // Not essential
+}
+
 async function processImagesInMDX(mdxContent: string, mdxDirectory: string) {
+  // Convert ![alt](link) to <img src alt width height/>
   const markdownImageRegex = /!\[([^\]]*)\]\((\.[^)]+\.(jpg|jpeg|png|webp|avif|gif))\)/g;
 
   let processedContent = mdxContent;
@@ -121,8 +137,8 @@ async function processImagesInMDX(mdxContent: string, mdxDirectory: string) {
     }
 
     // Copy image to public directory during build
-    const parentFolder = path.basename(path.dirname(mdxDirectory)); // Comically jank but works
-    const publicImagePath = `/${parentFolder}/${path.basename(mdxDirectory)}/${path.basename(imagePath)}`;
+    const parentFolderType = path.basename(path.dirname(mdxDirectory)); // post|project
+    const publicImagePath = `/${parentFolderType}/${path.basename(mdxDirectory)}/${path.basename(imagePath)}`;
     const publicFullPath = path.join(process.cwd(), "/public", publicImagePath);
 
     // Ensure directory exists

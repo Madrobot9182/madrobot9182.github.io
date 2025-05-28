@@ -1,5 +1,5 @@
 import HorizontalLine from "@/components/horizontal-line";
-import ProfilePfp from "@/images/ProfilePfp.jpg";
+import ProfilePfp from "../../../public/placeholders/ProfilePfp.jpg";
 import Image from "next/image";
 
 export default function AboutMe() {

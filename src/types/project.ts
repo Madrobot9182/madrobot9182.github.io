@@ -12,5 +12,5 @@ export interface Project {
   slug: string;
   frontMatter: ProjectFrontMatter;
   content: string;
-  image: StaticImageData | undefined;
+  imageURL: string;
 }

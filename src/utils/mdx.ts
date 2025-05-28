@@ -1,10 +1,9 @@
 import fs from "fs/promises";
 import path from "path";
-import sharp from "sharp"
+import sharp from "sharp";
 import matter from "gray-matter";
 import { PostFrontMatter } from "@/types/blog";
 import { ProjectFrontMatter } from "@/types/project";
-import { projectCovers } from "@/images/images-export";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 const projectsDirectory = path.join(process.cwd(), "projects");
@@ -74,11 +73,17 @@ export async function getProjectBySlug(slug: string) {
     ...data,
   };
 
-  const image = projectCovers.find((el) => el.slug === realSlug)?.image;
-
   // Copy images to public folder
   const processedContent = await processImagesInMDX(content, projectFolder);
-  return { slug: realSlug, frontMatter, content: processedContent, image };
+
+  // Check if cover image exist
+  let imageURL;
+  if (!fs.stat(path.join(projectFolder, "cover.avif"))) {
+    imageURL = undefined;
+  } else {
+    imageURL = path.join(`/projects`, `/${realSlug}`, "/cover.avif");
+  }
+  return { slug: realSlug, frontMatter, content: processedContent, imageURL };
 }
 
 export async function getAllProjects() {
@@ -91,7 +96,7 @@ export async function getAllProjects() {
 
 async function processImagesInMDX(mdxContent: string, mdxDirectory: string) {
   const markdownImageRegex = /!\[([^\]]*)\]\((\.[^)]+\.(jpg|jpeg|png|webp|avif|gif))\)/g;
-  
+
   let processedContent = mdxContent;
   const matches = [...mdxContent.matchAll(markdownImageRegex)];
 
@@ -116,7 +121,8 @@ async function processImagesInMDX(mdxContent: string, mdxDirectory: string) {
     }
 
     // Copy image to public directory during build
-    const publicImagePath = `/${path.basename(mdxDirectory)}/${path.basename(imagePath)}`;
+    const parentFolder = path.basename(path.dirname(mdxDirectory)); // Comically jank but works
+    const publicImagePath = `/${parentFolder}/${path.basename(mdxDirectory)}/${path.basename(imagePath)}`;
     const publicFullPath = path.join(process.cwd(), "/public", publicImagePath);
 
     // Ensure directory exists
@@ -124,7 +130,10 @@ async function processImagesInMDX(mdxContent: string, mdxDirectory: string) {
     await fs.copyFile(fullImagePath, publicFullPath);
 
     // Replace import with public path
-    processedContent = processedContent.replace(fullMatch, `<OptimizedImage src="${publicImagePath}" alt="${alt}" width={${width}} height={${height}} />`);
+    processedContent = processedContent.replace(
+      fullMatch,
+      `<OptimizedImage src="${publicImagePath}" alt="${alt}" width={${width}} height={${height}} />`
+    );
   }
 
   return processedContent;

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Project } from "../types/project";
-import { getExcerpt } from "@/utils/mdx";
+import { getExcerpt } from "@/utils/date-parser";
 import { DateFormatter } from "@/utils/date-parser";
-import PlaceHolder from "../images/Placeholder.jpg";
+import PlaceHolder from "../../public/placeholders/Placeholder.jpg";
 import Image from "next/image";
 interface ProjectGridProps {
   projects: Project[];
@@ -22,9 +22,9 @@ export default function ProjectIndexGrid({ projects, gridLayout }: ProjectGridPr
           <p className="text-gray-800 dark:text-zinc-300 text-left mb-2">{DateFormatter(project.frontMatter.date, project.frontMatter.dateFormat)}</p>
           <div className="relative w-full min-h-42 px-3 py-2.5 mb-2">
           <Image
-                src={project.image || PlaceHolder}
+                src={project.imageURL || PlaceHolder}
                 alt={project.slug + " cover image"}
-                placeholder="blur"
+                placeholder="empty"
                 fill
                 style={{
                   objectFit: 'contain',

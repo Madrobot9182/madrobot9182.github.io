@@ -9,7 +9,7 @@ export default async function ProjectPage({
 }) {
   try {
     const { slug } = await params;
-    const post = getProjectBySlug(slug);
+    const post = await getProjectBySlug(slug);
 
     if (!post) {
       return notFound();
@@ -23,7 +23,7 @@ export default async function ProjectPage({
 }
 
 export async function generateStaticParams() {
-  const posts = getAllProjects();
+  const posts = await getAllProjects();
   return posts.map((post) => ({
     slug: post.slug,
   }));

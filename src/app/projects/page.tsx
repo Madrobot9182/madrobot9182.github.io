@@ -1,8 +1,8 @@
 import { getAllProjects } from "@/utils/mdx";
 import ProjectIndexGrid from "@/components/project-index-grid";
 
-export default function ProjectGrid() {
-  const projects = getAllProjects();
+export default async function ProjectGrid() {
+  const projects = await getAllProjects();
 
   return (
     <div className="mx-auto my-10 max-w-7xl px-6">

@@ -77,7 +77,7 @@ export async function getProjectBySlug(slug: string) {
   const processedContent = await processImagesInMDX(content, projectFolder);
   
   // Check if cover image exist
-  var imageCoverURL;
+  let imageCoverURL;
   if (!fs.stat(path.join(projectFolder, "cover.avif"))) {
     imageCoverURL = undefined;
   } else {

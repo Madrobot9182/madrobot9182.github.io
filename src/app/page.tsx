@@ -3,7 +3,6 @@ import ProjectIndexGrid from "@/components/project-index-grid";
 import { getAllPosts, getAllProjects} from "@/utils/mdx";
 import Link from "next/link";
 
-// TODO find a way for outer div to properly fill the main div
 export default async function Home() {
   const posts = await getAllPosts();
   const projects = await getAllProjects();

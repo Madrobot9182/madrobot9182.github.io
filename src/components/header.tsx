@@ -1,7 +1,5 @@
 import Link from "next/link";
-import favicon from "@/app/favicon.ico"
-import Image from "next/image";
-//  max-w-7xl to constraint the header
+
 export default function Header() {
   return (
     <header>

@@ -38,7 +38,9 @@ export function getPostBySlug(slug: string) {
     ...data,
   };
 
-  return { slug: realSlug, frontMatter, content };
+  // Copy images to public folder
+  const imageProcessedContent = processImagesInMDX(content, postFolder);
+  return { slug: realSlug, frontMatter, imageProcessedContent };
 }
 
 export function getAllPosts() {
@@ -47,15 +49,13 @@ export function getAllPosts() {
     .map((slug) => getPostBySlug(slug))
     .filter((post) => post !== undefined)
     // sort posts by date in descending order
-    .sort((post1, post2) =>
-      post1.frontMatter.date > post2.frontMatter.date ? -1 : 1
-    );
+    .sort((post1, post2) => (post1.frontMatter.date > post2.frontMatter.date ? -1 : 1));
   return posts;
 }
 
 export function getProjectBySlug(slug: string) {
   const realSlug = slug.replace(/\.mdx$/, ""); // Remove .mdx from filename
-  const projectFolder = path.join(projectsDirectory, `${realSlug}`); // TODO
+  const projectFolder = path.join(projectsDirectory, `${realSlug}`);
 
   if (!fs.existsSync(projectFolder)) {
     return undefined;
@@ -76,7 +76,10 @@ export function getProjectBySlug(slug: string) {
   };
 
   const image = projectCovers.find((el) => el.slug === realSlug)?.image;
-  return { slug: realSlug, frontMatter, content, image };
+
+  // Copy images to public folder
+  const processedContent = processImagesInMDX(content, projectFolder);
+  return { slug: realSlug, frontMatter, content: processedContent, image };
 }
 
 export function getAllProjects() {
@@ -85,17 +88,44 @@ export function getAllProjects() {
     .map((slug) => getProjectBySlug(slug))
     .filter((post) => post !== undefined)
     // sort posts by date in descending order
-    .sort((post1, post2) =>
-      post1.frontMatter.date > post2.frontMatter.date ? -1 : 1
-    );
+    .sort((post1, post2) => (post1.frontMatter.date > post2.frontMatter.date ? -1 : 1));
   return posts;
+}
+
+function processImagesInMDX(mdxContent: string, mdxDirectory: string) {
+// Match markdown image syntax: ![alt](./image.ext)
+  const markdownImageRegex = /!\[([^\]]*)\]\((\.[^)]+\.(jpg|jpeg|png|webp|avif|gif))\)/g;
+  
+  let processedContent = mdxContent;
+  const matches = [...mdxContent.matchAll(markdownImageRegex)];
+
+  for (const match of matches) {
+    const [fullMatch, altText, imagePath] = match;
+    const fullImagePath = path.join(mdxDirectory, imagePath);
+
+    // Copy image to public directory during build
+    const publicImagePath = `${path.basename(mdxDirectory)}/${path.basename(imagePath)}`;
+    const publicFullPath = path.join(process.cwd(), "/public", publicImagePath);
+
+    // Ensure directory exists
+    fs.mkdir(path.dirname(publicFullPath), { recursive: true }, (err) => {
+      if (err) throw err;
+    });
+    fs.copyFile(fullImagePath, publicFullPath, (err) => {
+      if (err) throw err;
+    });
+
+    // Replace import with public path
+    processedContent = processedContent.replace(fullMatch, `![${altText}](${publicImagePath})`);
+    console.log(processedContent);
+  }
+
+  return processedContent;
 }
 
 export function getExcerpt(content: string) {
   // Remove markdown formatting
-  const plainText = content
-    .replace(/[#*`]/g, "")
-    .replace(/\[(.*?)\]\(.*?\)/g, "$1");
+  const plainText = content.replace(/[#*`]/g, "").replace(/\[(.*?)\]\(.*?\)/g, "$1");
   // Get first 150 characters
   return plainText.trim().slice(0, 300) + (plainText.length > 300 ? "..." : "");
 }

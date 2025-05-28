@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-//  max-w-7xl to constraint the header
 export default function Header() {
   return (
     <header>
@@ -11,6 +10,7 @@ export default function Header() {
         <div className="flex md:flex-1 justify-start ">
           <Link href="/" className="text-3xl font-bold">
           严
+          {/* <Image src={favicon} alt="严 yan" width={32} height={32}/> */}
           </Link>
         </div>
 
@@ -18,7 +18,7 @@ export default function Header() {
           <h2 className="font-bold">-------- SEARCH BAR HERE --------</h2>
         </div> */}
 
-        <div className="flex md:flex-1 justify-end items-center gap-x-4 md:gap-x-6">
+        <div className="flex md:flex-1 justify-end items-center gap-x-4 md:gap-x-6 font-semibold">
           <Link href="/blog" className="underline">
             BLOG
           </Link>

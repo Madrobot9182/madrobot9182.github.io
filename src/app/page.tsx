@@ -3,15 +3,13 @@ import ProjectIndexGrid from "@/components/project-index-grid";
 import { getAllPosts, getAllProjects} from "@/utils/mdx";
 import Link from "next/link";
 
-// TODO find a way for outer div to properly fill the main div
 export default async function Home() {
   const posts = await getAllPosts();
   const projects = await getAllProjects();
 
   return (
     <div
-      className="mx-auto px-6 flex flex-col lg:flex-row items-center justify-center w-full h-full"
-      style={{ minHeight: "90vh" }}
+      className="mx-auto px-6 flex flex-col lg:flex-row items-center justify-center w-full flex-1"
     >
       <div className="flex flex-col lg:flex-row flex-1 justify-center my-8 lg:my-0">
         <div className="flex flex-row justify-between gap-x-7">
@@ -27,11 +25,11 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="flex-1 text-center lg:text-left lg:pe-16">
+      <div className="flex-1 text-center lg:text-left lg:pe-16 py-4">
         <Link href="/blog" className="hover:underline font-medium text-4xl mb-0">Recent Blogs</Link>
         <BlogIndexList posts={posts.slice(0,4)} />
 
-        <Link href="/projects" className="hover:underline font-medium text-4xl mb-0">Recent Projects</Link>
+        <div className="mb-6"><Link href="/projects" className="hover:underline font-medium text-4xl mb-0">Recent Projects</Link></div>
         <ProjectIndexGrid projects={projects.slice(0,2)} gridLayout="grid-cols-1 md:grid-cols-2" />
       </div>
     </div>

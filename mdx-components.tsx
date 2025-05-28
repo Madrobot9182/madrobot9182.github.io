@@ -12,16 +12,16 @@ type AnchorProps = ComponentPropsWithoutRef<"a">;
 type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
 export const components = {
-  h1: (props: HeadingProps) => <h1 className="font-bold text-4xl pt-8 pb-6 mb-0" {...props} />,
+  h1: (props: HeadingProps) => <h1 className="font-bold text-4xl pt-6 pb-6 mb-0" {...props} />,
   h2: (props: HeadingProps) => (
-    <h2 className="text-gray-800 dark:text-zinc-200 font-bold text-xl pt-6 pb-3" {...props} />
+    <h2 className="text-gray-800 dark:text-zinc-200 font-bold text-xl pt-3 pb-3" {...props} />
   ),
   h3: (props: HeadingProps) => <h3 className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3" {...props} />,
   h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
   p: (props: ParagraphProps) => <p className="text-gray-800 dark:text-zinc-300 leading-snug pb-4" {...props} />,
-  ol: (props: ListProps) => <ol className="text-gray-800 dark:text-zinc-300 list-decimal pl-5 space-y-2" {...props} />,
+  ol: (props: ListProps) => <ol className="text-gray-800 dark:text-zinc-300 list-decimal pl-5 space-y-2 mb-6" {...props} />,
   ul: (props: ListProps) => (
-    <ul className="text-gray-800 dark:text-zinc-300 list-disc pl-5 space-y-1.5 pb-2" {...props} />
+    <ul className="text-gray-800 dark:text-zinc-300 list-disc pl-5 space-y-2 mb-6" {...props} />
   ),
   li: (props: ListItemProps) => <li className="pl-1" {...props} />,
   em: (props: ComponentPropsWithoutRef<"em">) => <em className="font-medium" {...props} />,

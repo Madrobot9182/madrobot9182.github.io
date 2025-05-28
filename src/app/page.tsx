@@ -10,8 +10,7 @@ export default async function Home() {
 
   return (
     <div
-      className="mx-auto px-6 flex flex-col lg:flex-row items-center justify-center w-full h-full"
-      style={{ minHeight: "90vh" }}
+      className="mx-auto px-6 flex flex-col lg:flex-row items-center justify-center w-full flex-1"
     >
       <div className="flex flex-col lg:flex-row flex-1 justify-center my-8 lg:my-0">
         <div className="flex flex-row justify-between gap-x-7">
@@ -27,7 +26,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="flex-1 text-center lg:text-left lg:pe-16">
+      <div className="flex-1 text-center lg:text-left lg:pe-16 py-6">
         <Link href="/blog" className="hover:underline font-medium text-4xl mb-0">Recent Blogs</Link>
         <BlogIndexList posts={posts.slice(0,4)} />
 

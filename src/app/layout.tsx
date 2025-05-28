@@ -18,11 +18,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning lang="en" className={inter.className + "dark"}>
-      <body className="flex flex-col min-h-screen">
+    <html suppressHydrationWarning lang="en" className={inter.className + "dark h-full"}>
+      <body className="flex flex-col h-screen">
         <ThemeProvider attribute="class">
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex flex-col flex-1">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

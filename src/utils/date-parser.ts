@@ -39,7 +39,7 @@ export function DateFormatter(dateString: string, format: string): string {
 }
 
 export function getExcerpt(content: string) {
-  let plainText = content
+  const plainText = content
     // Remove JSX/React components and HTML tags
     .replace(/<[^>]*>/g, '')
     // Remove markdown headers

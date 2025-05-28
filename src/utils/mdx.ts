@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import sharp from "sharp"
 import matter from "gray-matter";
 import { PostFrontMatter } from "@/types/blog";
 import { ProjectFrontMatter } from "@/types/project";
@@ -109,7 +110,6 @@ async function processImagesInMDX(mdxContent: string, mdxDirectory: string) {
 
     // Auto-detect if not provided
     if (!width || !height) {
-      const sharp = require('sharp');
       const metadata = await sharp(fullImagePath).metadata();
       width = width || metadata.width;
       height = height || metadata.height;

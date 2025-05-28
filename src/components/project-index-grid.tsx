@@ -10,6 +10,7 @@ interface ProjectGridProps {
 }
 
 export default function ProjectIndexGrid({ projects, gridLayout }: ProjectGridProps) {
+  console.log(projects[0].imageCoverURL);
   return (
     <div className={gridLayout + " mx-auto grid gap-8 md:ps-8"}>
       {projects.map((project) => (
@@ -19,18 +20,22 @@ export default function ProjectIndexGrid({ projects, gridLayout }: ProjectGridPr
           key={project.slug}
         >
           <h2 className="text-xl font-medium text-left">{project.frontMatter.title}</h2>
-          <p className="text-gray-800 dark:text-zinc-300 text-left mb-2">{DateFormatter(project.frontMatter.date, project.frontMatter.dateFormat)}</p>
+          <p className="text-gray-800 dark:text-zinc-300 text-left mb-2">
+            {DateFormatter(project.frontMatter.date, project.frontMatter.dateFormat)}
+          </p>
           <div className="relative w-full min-h-42 px-3 py-2.5 mb-2">
-          <Image
-                src={project.imageURL || PlaceHolder}
-                alt={project.slug + " cover image"}
-                placeholder="empty"
-                fill
-                style={{
-                  objectFit: 'contain',
-                }}
+            <Image
+              src={project.imageCoverURL || PlaceHolder}
+              alt={project.slug + " cover image"}
+              width={500}
+              height={300}
+              placeholder="empty"
+              sizes="(max-width: 768px) 100vw, 400px"
+              style={{
+                objectFit: "cover",
+              }}
             />
-            </div>
+          </div>
           <p className="line-clamp-4">{getExcerpt(project.content)}</p>
         </Link>
       ))}

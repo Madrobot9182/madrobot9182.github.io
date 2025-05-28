@@ -10,13 +10,12 @@ interface ProjectGridProps {
 }
 
 export default function ProjectIndexGrid({ projects, gridLayout }: ProjectGridProps) {
-  console.log(projects[0].imageCoverURL);
   return (
     <div className={gridLayout + " mx-auto grid gap-8 md:ps-8"}>
       {projects.map((project) => (
         <Link
           href={`/projects/${project.slug}`}
-          className="flex flex-col hover:underline p-8 rounded-xl border-b-2 border-b-gray-300"
+          className="flex flex-col hover:underline p-4 rounded-xl border-b-3 bg-gray-100 dark:bg-zinc-900 border-blue-200 dark:border-zinc-700"
           key={project.slug}
         >
           <h2 className="text-xl font-medium text-left">{project.frontMatter.title}</h2>

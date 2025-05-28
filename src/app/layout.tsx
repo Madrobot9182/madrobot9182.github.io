@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "next-themes";
 
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  variable: '--font-roboto-slab',
+});
 
 export const metadata: Metadata = {
-  title: { default: "Ryan's Website", template: "%s | Ryan Yan" },
+  title: { default: "Ryan's Portfolio Website", template: "%s | Ryan Yan" },
   description: "Software and Game developer. Portfolio and blog website",
 };
 
@@ -18,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning lang="en" className={inter.className + "dark h-full"}>
+    <html suppressHydrationWarning lang="en" className={robotoMono.className + " dark h-full"}>
       <body className="flex flex-col h-screen">
         <ThemeProvider attribute="class">
           <Header />

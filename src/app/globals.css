@@ -2,6 +2,12 @@
 /* @variant dark (&:where([data-theme="dark"])); */
 /* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Remove margin from nested lists */
+ul ul, ul ol, ol ul, ol ol {
+  margin-bottom: 0;
+}
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;

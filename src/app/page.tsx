@@ -26,11 +26,11 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="flex-1 text-center lg:text-left lg:pe-16 py-6">
+      <div className="flex-1 text-center lg:text-left lg:pe-16 py-4">
         <Link href="/blog" className="hover:underline font-medium text-4xl mb-0">Recent Blogs</Link>
         <BlogIndexList posts={posts.slice(0,4)} />
 
-        <Link href="/projects" className="hover:underline font-medium text-4xl mb-0">Recent Projects</Link>
+        <div className="mb-6"><Link href="/projects" className="hover:underline font-medium text-4xl mb-0">Recent Projects</Link></div>
         <ProjectIndexGrid projects={projects.slice(0,2)} gridLayout="grid-cols-1 md:grid-cols-2" />
       </div>
     </div>

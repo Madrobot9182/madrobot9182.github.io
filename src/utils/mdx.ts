@@ -77,14 +77,14 @@ export async function getProjectBySlug(slug: string) {
   const processedContent = await processImagesInMDX(content, projectFolder);
   
   // Check if cover image exist
-  let imageURL;
+  let imageCoverURL;
   if (!fs.stat(path.join(projectFolder, "cover.avif"))) {
-    imageURL = undefined;
+    imageCoverURL = undefined;
   } else {
     processCoverImage(projectFolder);
-    imageURL = path.join(`/projects`, `/${realSlug}`, "/cover.avif");
+    imageCoverURL = path.join(`/projects`, `${realSlug}`, "cover-thumb.avif");
   }
-  return { slug: realSlug, frontMatter, content: processedContent, imageURL };
+  return { slug: realSlug, frontMatter, content: processedContent, imageCoverURL };
 }
 
 export async function getAllProjects() {
@@ -105,8 +105,13 @@ async function processCoverImage(contentDirectory: string) {
   
   try {
     await fs.mkdir(publicCoverPath, { recursive: true });
+    // Create optimized thumbnail (400x300, ~80% quality)
     await fs.copyFile(coverPath, path.join(publicCoverPath, "cover.avif"));
-  } catch (err) {console.warn(err)} // Not essential
+    await sharp(coverPath)
+      .resize(500, 300, { fit: 'cover' })
+      .avif({ quality: 80 })
+      .toFile(path.join(publicCoverPath, "cover-thumb.avif"));
+  } catch (err) {console.warn(err)} // Not essential if this fails
 }
 
 async function processImagesInMDX(mdxContent: string, mdxDirectory: string) {

@@ -4,9 +4,9 @@ import { getAllPosts, getAllProjects} from "@/utils/mdx";
 import Link from "next/link";
 
 // TODO find a way for outer div to properly fill the main div
-export default function Home() {
+export default async function Home() {
   const posts = getAllPosts();
-  const projects = getAllProjects();
+  const projects = await getAllProjects();
 
   return (
     <div

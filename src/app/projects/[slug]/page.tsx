@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import BlogPost from "@/components/blogpost";
-import { getProjectBySlug, getAllProjects } from "@/utils/mdx";
+import { getAllProjects, getProjectBySlug } from "@/utils/mdx";
 
 export default async function ProjectPage({
   params,

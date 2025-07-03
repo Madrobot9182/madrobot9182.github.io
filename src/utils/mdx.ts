@@ -4,6 +4,7 @@ import sharp from "sharp";
 import matter from "gray-matter";
 import { PostFrontMatter } from "@/types/blog";
 import { ProjectFrontMatter } from "@/types/project";
+import { getExcerpt } from "./date-parser";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 const projectsDirectory = path.join(process.cwd(), "projects");
@@ -35,6 +36,7 @@ export async function getPostBySlug(slug: string) {
     date: data.date || new Date().toISOString(),
     dateFormat: data.dateFormat || "default",
     tags: data.tags || [],
+    excerpt: getExcerpt(content),
     ...data,
   };
 
@@ -70,6 +72,7 @@ export async function getProjectBySlug(slug: string) {
     date: data.date || new Date().toISOString(),
     dateFormat: data.dateFormat || "year",
     tags: data.tags || [],
+    excerpt: getExcerpt(content),
     ...data,
   };
 

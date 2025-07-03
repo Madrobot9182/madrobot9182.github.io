@@ -23,7 +23,7 @@ export default function ThemeToggle() {
         onClick={() =>
           currentTheme == "dark" ? setTheme("light") : setTheme("dark")
         }
-        className="flex items-center gap-2"
+        className="flex items-center gap-2 cursor-pointer"
         aria-label="Toggle dark mode"
       >
         <span className="text-sm font-semibold leading-none">

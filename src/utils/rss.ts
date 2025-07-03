@@ -6,7 +6,7 @@ import {Post} from "@/types/blog"
 export default async function generateRssFeed(allPosts: Post[]) {
   const site_url =
     process.env.NODE_ENV === "production"
-      ? "https://https://madrobot9182.github.io"
+      ? "https://madrobot9182.github.io"
       : "http://localhost:3000";
 
   const feedOptions = {
@@ -14,7 +14,7 @@ export default async function generateRssFeed(allPosts: Post[]) {
     description: "Welcome to this blog posts!",
     site_url: site_url,
     feed_url: `${site_url}/rss.xml`,
-    image_url: `${site_url}/logo.jpeg`,
+    image_url: `${site_url}/placeholders/icon.png`,
     pubDate: new Date(),
     copyright: `All rights reserved ${new Date().getFullYear()}`,
   };

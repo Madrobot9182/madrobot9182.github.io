@@ -1,7 +1,6 @@
 import BlogIndexList from "@/components/blog-index-list";
 import ProjectIndexGrid from "@/components/project-index-grid";
 import { getAllPosts, getAllProjects} from "@/utils/mdx";
-import generateRssFeed from "@/utils/rss";
 import Link from "next/link";
 
 export default async function Home() {
@@ -35,23 +34,4 @@ export default async function Home() {
       </div>
     </div>
   );
-}
-
-export async function generateStaticParams() {
-  const posts = await getAllPosts();
-  const projects = await getAllProjects();
-  const allItems = [...posts, ...projects];
-
-  await generateRssFeed(allItems); // Generate RSS feed using allItems
-
-  const postParams = posts.map((post) => ({
-    slug: ['blog', post.slug],
-  }));
-
-  const projectParams = projects.map((project) => ({
-    slug: ['project', project.slug],
-  }));
-
-  const params = [...postParams, ...projectParams];
-  return params;
 }

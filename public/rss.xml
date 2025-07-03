@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Blog posts | RSS Feed]]></title>
+        <description><![CDATA[Welcome to this blog posts!]]></description>
+        <link>https://https://madrobot9182.github.io</link>
+        <image>
+            <url>https://https://madrobot9182.github.io/placeholders/icon.png</url>
+            <title>Blog posts | RSS Feed</title>
+            <link>https://https://madrobot9182.github.io</link>
+        </image>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Thu, 03 Jul 2025 20:01:31 GMT</lastBuildDate>
+        <atom:link href="https://https://madrobot9182.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Thu, 03 Jul 2025 20:01:31 GMT</pubDate>
+        <copyright><![CDATA[All rights reserved 2025]]></copyright>
+        <item>
+            <title><![CDATA[Journey to the East(ern Canada) - Halifax]]></title>
+            <description><![CDATA[post.frontMatter.excerpt]]></description>
+            <link>https://https://madrobot9182.github.io/blog/canada-hafx</link>
+            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-hafx</guid>
+            <pubDate>Sat, 28 Jun 2025 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Journey to the East(ern Canada) - Prince Edward Island]]></title>
+            <description><![CDATA[post.frontMatter.excerpt]]></description>
+            <link>https://https://madrobot9182.github.io/blog/canada-pei</link>
+            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-pei</guid>
+            <pubDate>Tue, 24 Jun 2025 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Journey to the East(ern Canada) - VIA Rail and Moncton]]></title>
+            <description><![CDATA[post.frontMatter.excerpt]]></description>
+            <link>https://https://madrobot9182.github.io/blog/canada-via-mont</link>
+            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-via-mont</guid>
+            <pubDate>Fri, 20 Jun 2025 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Journey to the East(ern Canada) - Quebec City]]></title>
+            <description><![CDATA[post.frontMatter.excerpt]]></description>
+            <link>https://https://madrobot9182.github.io/blog/canada-qbec</link>
+            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-qbec</guid>
+            <pubDate>Wed, 18 Jun 2025 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Journey to the East(ern Canada) - Montreal]]></title>
+            <description><![CDATA[post.frontMatter.excerpt]]></description>
+            <link>https://https://madrobot9182.github.io/blog/canada-mtrl</link>
+            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-mtrl</guid>
+            <pubDate>Fri, 13 Jun 2025 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Journey to the East(ern Canada) - Ottawa]]></title>
+            <description><![CDATA[post.frontMatter.excerpt]]></description>
+            <link>https://https://madrobot9182.github.io/blog/canada-otw</link>
+            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-otw</guid>
+            <pubDate>Sun, 08 Jun 2025 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Journey to the East(ern Canada) - Toronto]]></title>
+            <description><![CDATA[post.frontMatter.excerpt]]></description>
+            <link>https://https://madrobot9182.github.io/blog/canada-tor</link>
+            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-tor</guid>
+            <pubDate>Thu, 05 Jun 2025 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Trial By Fire - My First Experience(s) Working With Software Teams]]></title>
+            <description><![CDATA[post.frontMatter.excerpt]]></description>
+            <link>https://https://madrobot9182.github.io/blog/first-group-project</link>
+            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/first-group-project</guid>
+            <pubDate>Sat, 17 May 2025 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[My First Ever Blog, From Someone Who Can (kinda) Write.]]></title>
+            <description><![CDATA[post.frontMatter.excerpt]]></description>
+            <link>https://https://madrobot9182.github.io/blog/first-post</link>
+            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/first-post</guid>
+            <pubDate>Thu, 01 May 2025 00:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

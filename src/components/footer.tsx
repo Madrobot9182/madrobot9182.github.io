@@ -23,7 +23,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-1 justify-end items-center gap-x-4 md:gap-x-6">
-          <a href="https://github.com/Madrobot9182" target="_blank">
+          <a href="https://github.com/Madrobot9182/" target="_blank">
             <FaGithub className="size-7 md:size-8" />
           </a>
           <a

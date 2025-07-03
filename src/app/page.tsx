@@ -14,13 +14,13 @@ export default async function Home() {
       <div className="flex flex-col lg:flex-row flex-1 justify-center my-8 lg:my-0">
         <div className="flex flex-row justify-between gap-x-7">
           <div>
-            <h1 className="text-right text-6xl lg:text-7xl font-semibold mb-5">Ryan</h1>
+            <h2 className="text-right text-6xl lg:text-7xl font-semibold mb-5">Ryan</h2>
             <h3 className="text-right text-xl font-medium">Software and</h3>
             <h3 className="text-right text-xl font-medium">Game Developer</h3>
           </div>
           <div>
-            <h1 className="text-left text-6xl lg:text-7xl font-semibold mb-5">Yan</h1>
-            <h1 className="text-left text-6xl lg:text-7xl font-semibold">严</h1>
+            <h2 className="text-left text-6xl lg:text-7xl font-semibold mb-5">Yan</h2>
+            <h3 className="text-left text-6xl lg:text-7xl font-semibold">严</h3>
           </div>
         </div>
       </div>

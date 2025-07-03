@@ -25,7 +25,7 @@ export default async function generateRssFeed(allPosts: Post[]) {
   allPosts.map((post) => {
     feed.item({
       title: post.frontMatter.title,
-      description: "post.frontMatter.excerpt",
+      description: post.frontMatter.excerpt,
       url: `${site_url}/blog/${post.slug}`,
       date: post.frontMatter.date,
     });

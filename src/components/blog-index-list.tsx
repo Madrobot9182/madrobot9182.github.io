@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Post } from "../types/blog";
-import { getExcerpt } from "@/utils/date-parser";
 import { DateFormatter } from "@/utils/date-parser";
 
 interface BlogListProps {
@@ -16,7 +15,7 @@ export default function BlogIndexList({ posts }: BlogListProps) {
             <h2 className="text-xl font-medium">{post.frontMatter.title}</h2>
             <p className="line-clamp-2 text-gray-800 dark:text-zinc-300">
               {" "}
-              {getExcerpt(post.content)}
+              {post.frontMatter.excerpt}
             </p>
             <p className="text-gray-800 dark:text-zinc-300 mb-2">
               {DateFormatter(post.frontMatter.date, post.frontMatter.dateFormat)}

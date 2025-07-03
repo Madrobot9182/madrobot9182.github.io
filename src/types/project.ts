@@ -4,6 +4,7 @@ export interface ProjectFrontMatter {
   date: string;
   dateFormat: string;
   tags: string[];
+  excerpt: string;
 }
 
 export interface Project {

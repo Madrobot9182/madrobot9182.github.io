@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Project } from "../types/project";
-import { getExcerpt } from "@/utils/date-parser";
 import { DateFormatter } from "@/utils/date-parser";
 import PlaceHolder from "../../public/placeholders/Placeholder.jpg";
 import Image from "next/image";
@@ -31,7 +30,7 @@ export default function ProjectIndexGrid({ projects, gridLayout }: ProjectGridPr
               placeholder="empty"
             />
           </div>
-          <p className="line-clamp-4">{getExcerpt(project.content)}</p>
+          <p className="line-clamp-4">{project.frontMatter.excerpt}</p>
         </Link>
       ))}
     </div>

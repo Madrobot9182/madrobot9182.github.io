@@ -2,78 +2,78 @@
     <channel>
         <title><![CDATA[Blog posts | RSS Feed]]></title>
         <description><![CDATA[Welcome to this blog posts!]]></description>
-        <link>https://https://madrobot9182.github.io</link>
+        <link>http://localhost:3000</link>
         <image>
-            <url>https://https://madrobot9182.github.io/placeholders/icon.png</url>
+            <url>http://localhost:3000/placeholders/icon.png</url>
             <title>Blog posts | RSS Feed</title>
-            <link>https://https://madrobot9182.github.io</link>
+            <link>http://localhost:3000</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 03 Jul 2025 20:01:31 GMT</lastBuildDate>
-        <atom:link href="https://https://madrobot9182.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Thu, 03 Jul 2025 20:01:31 GMT</pubDate>
+        <lastBuildDate>Thu, 03 Jul 2025 20:14:19 GMT</lastBuildDate>
+        <atom:link href="http://localhost:3000/rss.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Thu, 03 Jul 2025 20:14:19 GMT</pubDate>
         <copyright><![CDATA[All rights reserved 2025]]></copyright>
         <item>
             <title><![CDATA[Journey to the East(ern Canada) - Halifax]]></title>
-            <description><![CDATA[post.frontMatter.excerpt]]></description>
-            <link>https://https://madrobot9182.github.io/blog/canada-hafx</link>
-            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-hafx</guid>
+            <description><![CDATA[Across all the cities I've visited and the wonders that I saw, I had substantially underestimated Halifax. Being the last city on my trip, I had done all the planning but focused most of my attention on Ontario and Quebec. Coming from the small towns in New Brunswick and Prince Edward Island, gettin...]]></description>
+            <link>http://localhost:3000/blog/canada-hafx</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/canada-hafx</guid>
             <pubDate>Sat, 28 Jun 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Journey to the East(ern Canada) - Prince Edward Island]]></title>
-            <description><![CDATA[post.frontMatter.excerpt]]></description>
-            <link>https://https://madrobot9182.github.io/blog/canada-pei</link>
-            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-pei</guid>
+            <description><![CDATA[While my stay in Moncton was as bare-bones as it gets, my next four nights would take me to the charming little island of Prince Edward Island, PEI for short. Most people tend to overlook this province (alongside the northern provinces and perhaps Newfoundland). Yet, this small community is where I ...]]></description>
+            <link>http://localhost:3000/blog/canada-pei</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/canada-pei</guid>
             <pubDate>Tue, 24 Jun 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Journey to the East(ern Canada) - VIA Rail and Moncton]]></title>
-            <description><![CDATA[post.frontMatter.excerpt]]></description>
-            <link>https://https://madrobot9182.github.io/blog/canada-via-mont</link>
-            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-via-mont</guid>
+            <description><![CDATA[This is where my trip gets interesting, as I wanted to get from Quebec to New Brunswick without the hassle of flying. I could have taken an overnight bus, but VIA Rail, Canada's passenger train company, offered an overnight train that also advertised itself as a sightseeing trip. I've always wanted ...]]></description>
+            <link>http://localhost:3000/blog/canada-via-mont</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/canada-via-mont</guid>
             <pubDate>Fri, 20 Jun 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Journey to the East(ern Canada) - Quebec City]]></title>
-            <description><![CDATA[post.frontMatter.excerpt]]></description>
-            <link>https://https://madrobot9182.github.io/blog/canada-qbec</link>
-            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-qbec</guid>
+            <description><![CDATA[Canada's major provinces have a funny trend, where their biggest city isn't always their capital. Vancouver in British Columbia, Regina in Saskatchewan, and Montreal in Quebec, respectively their province's biggest cities, but not their provincial capitals. There truly is something special about Que...]]></description>
+            <link>http://localhost:3000/blog/canada-qbec</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/canada-qbec</guid>
             <pubDate>Wed, 18 Jun 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Journey to the East(ern Canada) - Montreal]]></title>
-            <description><![CDATA[post.frontMatter.excerpt]]></description>
-            <link>https://https://madrobot9182.github.io/blog/canada-mtrl</link>
-            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-mtrl</guid>
+            <description><![CDATA[My next leg of the journey takes me through Quebec, the French-speaking province of Canada. While Ottawa had bilingual signs and services in both English and French, the Quebec cities of Montreal and Quebec City have everything primarily in French. From the province's centuries of history spanning w...]]></description>
+            <link>http://localhost:3000/blog/canada-mtrl</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/canada-mtrl</guid>
             <pubDate>Fri, 13 Jun 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Journey to the East(ern Canada) - Ottawa]]></title>
-            <description><![CDATA[post.frontMatter.excerpt]]></description>
-            <link>https://https://madrobot9182.github.io/blog/canada-otw</link>
-            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-otw</guid>
+            <description><![CDATA[Ottawa is an interesting city, being the bilingual capital of Canada that borders English Ontario and French Quebec. For a relatively small city, however, there are centuries of history embedded within its local architecture, and it is a thriving tourist hotspot for people of all backgrounds. I gave...]]></description>
+            <link>http://localhost:3000/blog/canada-otw</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/canada-otw</guid>
             <pubDate>Sun, 08 Jun 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Journey to the East(ern Canada) - Toronto]]></title>
-            <description><![CDATA[post.frontMatter.excerpt]]></description>
-            <link>https://https://madrobot9182.github.io/blog/canada-tor</link>
-            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/canada-tor</guid>
+            <description><![CDATA[Preface: So I may have lied about not blogging my personal life But a 28-night journey around Eastern and Atlantic Canada was calling for itself to be documented. Hence, what follows this and the subsequent blog posts is my tech-turned-travel blog about how I decided not to spend the month of June r...]]></description>
+            <link>http://localhost:3000/blog/canada-tor</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/canada-tor</guid>
             <pubDate>Thu, 05 Jun 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Trial By Fire - My First Experience(s) Working With Software Teams]]></title>
-            <description><![CDATA[post.frontMatter.excerpt]]></description>
-            <link>https://https://madrobot9182.github.io/blog/first-group-project</link>
-            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/first-group-project</guid>
+            <description><![CDATA[Group projects suck There is not a single story I've heard from friends or other developers where things end up exactly as planned. I'm not even suggesting that perfection is the ideal outcome, but the ways that teams fall apart are usually predictable, pathetic, and/or painfully obvious in retrospe...]]></description>
+            <link>http://localhost:3000/blog/first-group-project</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/first-group-project</guid>
             <pubDate>Sat, 17 May 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[My First Ever Blog, From Someone Who Can (kinda) Write.]]></title>
-            <description><![CDATA[post.frontMatter.excerpt]]></description>
-            <link>https://https://madrobot9182.github.io/blog/first-post</link>
-            <guid isPermaLink="true">https://https://madrobot9182.github.io/blog/first-post</guid>
+            <description><![CDATA[As I sat down and finally started typing something that was not HTML, I realized that I should explain why I even bothered to make this website in the first place. Whatever the reason that brought you here, thanks for spending the time to read what will probably be my most personal blog. I have just...]]></description>
+            <link>http://localhost:3000/blog/first-post</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/first-post</guid>
             <pubDate>Thu, 01 May 2025 00:00:00 GMT</pubDate>
         </item>
     </channel>

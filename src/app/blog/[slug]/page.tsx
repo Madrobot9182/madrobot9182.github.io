@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import BlogPost from "@/components/blogpost";
-import { getPostBySlug, getAllPosts } from "@/utils/mdx";
-import generateRssFeed from "@/utils/rss";
+import { getPostBySlug,  } from "@/utils/mdx";
 
 export default async function BlogPostPage({
   params,
@@ -23,11 +22,11 @@ export default async function BlogPostPage({
   }
 }
 
-export async function generateStaticParams() {
-  const posts = await getAllPosts();
-  await generateRssFeed(posts);
+// export async function generateStaticParams() {
+//   const posts = await getAllPosts();
+//   await generateRssFeed(posts);
   
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
+//   return posts.map((post) => ({
+//     slug: post.slug,
+//   }));
+// }

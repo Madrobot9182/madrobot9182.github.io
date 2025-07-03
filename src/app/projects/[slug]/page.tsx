@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import BlogPost from "@/components/blogpost";
-import { getProjectBySlug, getAllProjects } from "@/utils/mdx";
+import { getProjectBySlug } from "@/utils/mdx";
 
 export default async function ProjectPage({
   params,
@@ -22,9 +22,9 @@ export default async function ProjectPage({
   }
 }
 
-export async function generateStaticParams() {
-  const posts = await getAllProjects();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
+// export async function generateStaticParams() {
+//   const posts = await getAllProjects();
+//   return posts.map((post) => ({
+//     slug: post.slug,
+//   }));
+// }

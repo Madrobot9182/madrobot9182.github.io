@@ -2,19 +2,30 @@
 title: Doubt's Horizon
 date: 2025
 dateFormat: year
-tags: [video games, software developer, audio, unity, c# ]
+tags: [video games, software developer, audio, unity, c#]
 ---
 
-In my third year of university, I attempted the introduction class to game design and development (Cmput 250). In addition to learning about technical and game fundamentals, the final project was a short yet complete video game produced by a team of six. Currently hosted on itch.io, [our final game, Doubt's Horizon, is a 2D semi-openworld where you must navigate through the wastes and encounter its inhabitants, some friendly, some fearsome.](https://kaaden.itch.io/doubts-horizon)
+In my third year of university, I attempted the introduction class to game design and development (Cmput 250). In
+addition to learning about technical and game fundamentals, the final project was a short yet complete video game
+produced by a team of six. Currently hosted on itch.io,
+[our final game, Doubt's Horizon, is a 2D semi-openworld where you must navigate through the wastes and encounter its inhabitants, some friendly, some fearsome.](https://kaaden.itch.io/doubts-horizon)
 
 ![Home screen of Doubt's Horizon](./Screenshot_20250704_183415.avif)
 ![Party on the bridge](./Screenshot_20250704_154957.avif)
 
-To date, this has been the funniest class and the best experience I've ever had during my undergrad. Even if our friendship started out as trauma bonding, my little indie game studio gave me the closest CS friends I've ever had the pleasure to work with. There really do exist life-changing moments, [check out my blog on group project and crunching on this game.](/blog/first-group-project) 
+To date, this has been the funniest class and the best experience I've ever had during my undergrad. Even if our
+friendship started out as trauma bonding, my little indie game studio gave me the closest CS friends I've ever had the
+pleasure to work with. There really do exist life-changing moments,
+[check out my blog on group project and crunching on this game.](/blog/first-group-project)
 
-As the audio engineer and additional programmer, I'm very proud of the music and sound effects I managed to produce with so little time. With probably 80% of my time committed to programming, I really had to improvise with whatever I had on hand. [I uploaded the BGM on Soundcloud here](https://soundcloud.com/madrobot9182/sets/doubts-horizon-soundtrack), but you gotta play the game yourself to hear the SFXs.
+As the audio engineer and additional programmer, I'm very proud of the music and sound effects I managed to produce with
+so little time. With probably 80% of my time committed to programming, I really had to improvise with whatever I had on
+hand. [I uploaded the BGM on Soundcloud here](https://soundcloud.com/madrobot9182/sets/doubts-horizon-soundtrack), but
+you gotta play the game yourself to hear the SFXs.
 
-I've covered the development process itself extensively in my group project blog, but not the game itself. There were numerous changes since the initial prototype, from alpha to final release. Trust me, the game currently on itch.io is alien to whatever we had on our initial Trello board.
+I've covered the development process itself extensively in my group project blog, but not the game itself. There were
+numerous changes since the initial prototype, from alpha to final release. Trust me, the game currently on itch.io is
+alien to whatever we had on our initial Trello board.
 
 ![Development screenshot](./Screenshot_20250210_162934.avif)
 
@@ -22,54 +33,77 @@ Here's a highlight reel of features in our games. Credit to my other teammates f
 
 ### Audio
 
-- There are a couple of BGMs for different areas of the game, including the city, forest, shop (top left of the large forest area), and sanctuary. The battle BGM is designed to be eerily creepy, and there is a boss battle BGM for the final fight. They also fade in and out between transitions! I put a lot of effort into making them :)
+- There are a couple of BGMs for different areas of the game, including the city, forest, shop (top left of the large
+  forest area), and sanctuary. The battle BGM is designed to be eerily creepy, and there is a boss battle BGM for the
+  final fight. They also fade in and out between transitions! I put a lot of effort into making them :)
 
-- 9 talking/typewriter sound effects, corresponding to different entities (notice how each companion has their own talking blip)
+- 9 talking/typewriter sound effects, corresponding to different entities (notice how each companion has their own
+  talking blip)
 
-- Lots of subtle sound effects when interacting, clicking on buttons, slingshot, picking up items, opening doors, and so forth.
+- Lots of subtle sound effects when interacting, clicking on buttons, slingshot, picking up items, opening doors, and so
+  forth.
 
-- The Audiomanager interface was designed to be as easy to use as calling one function to handle playback, crossfades, and crossmutes. The codebase is lightweight and simple to understand.
+- The Audiomanager interface was designed to be as easy to use as calling one function to handle playback, crossfades,
+  and crossmutes. The codebase is lightweight and simple to understand.
 
 - Tab opens up a pause menu, showing sliders to control different sound levels.
 
 ### Dialogue
 
-- The dialogue system was very flexible: opening animation, portrait sprite, and typewriter effect with the text all used the same system.
+- The dialogue system was very flexible: opening animation, portrait sprite, and typewriter effect with the text all
+  used the same system.
 
-- The Dialog system can also handle tags, allowing the writer to add HTML-like tags in the dialog to indicate pauses between words, and clickable text with callbacks and hooks for pre- and post-dialogue logic. This lets us trigger events like giving an item or starting a cutscene.
+- The Dialog system can also handle tags, allowing the writer to add HTML-like tags in the dialog to indicate pauses
+  between words, and clickable text with callbacks and hooks for pre- and post-dialogue logic. This lets us trigger
+  events like giving an item or starting a cutscene.
 
-- Clickable dialogue ended up being a great asset for us as we were able to add interactability to our characters, as well as more unique ideas like the shopkeeper!
+- Clickable dialogue ended up being a great asset for us as we were able to add interactability to our characters, as
+  well as more unique ideas like the shopkeeper!
 
-- There are also 9 signs, starting from when you leave the city. Try reading them and observe the attention to sound and visuals.
+- There are also 9 signs, starting from when you leave the city. Try reading them and observe the attention to sound and
+  visuals.
 
 ![Dialog with the signpost](./Screenshot_20250704_154826.avif)
 
 ### Levels
 
-- Among the areas to explore and items to find, we also added small easter eggs from our fellow Cmput 250 studios! Try interacting with the blue car as you enter the city, and the fire elemental at the bottom right of the bridge in the forest.
+- Among the areas to explore and items to find, we also added small easter eggs from our fellow Cmput 250 studios! Try
+  interacting with the blue car as you enter the city, and the fire elemental at the bottom right of the bridge in the
+  forest.
 
-- Between levels, you'll see an arrow pointing into a gradient. We use transition animations to hide the teleporting player and load new scenes.
+- Between levels, you'll see an arrow pointing into a gradient. We use transition animations to hide the teleporting
+  player and load new scenes.
 
-- The final ending will judge you based on the number of companions remaining at the end. If you save enough people, then you can try to rebuild a settlement :)
+- The final ending will judge you based on the number of companions remaining at the end. If you save enough people,
+  then you can try to rebuild a settlement :)
 
-- The shop in the top left of the big forest area is also a cool addition we made after beta -- in a day. Sunny Cat Nap Studio has been in overdrive since the vertical slice, working exponentially faster and closer as a well-oiled team. 🛢️
+- The shop in the top left of the big forest area is also a cool addition we made after beta -- in a day. Sunny Cat Nap
+  Studio has been in overdrive since the vertical slice, working exponentially faster and closer as a well-oiled team.
+  🛢️
 
 ### Combat
 
-- Our artist managed to make some cool enemy art and animations, including the eyeball monster that follows your cursor. We then managed to animate the final boss using only the artist's old sketches.
+- Our artist managed to make some cool enemy art and animations, including the eyeball monster that follows your cursor.
+  We then managed to animate the final boss using only the artist's old sketches.
 
-- Our combat UI smoothly animates out with drawers and buttons. The party portraits on the bottom are scrollable, in case you end up with more than 3 companions.
+- Our combat UI smoothly animates out with drawers and buttons. The party portraits on the bottom are scrollable, in
+  case you end up with more than 3 companions.
 
-- The battleUIHander and all its associated classes are very complex, with many interwoven classes to support all our features.
+- The battleUIHander and all its associated classes are very complex, with many interwoven classes to support all our
+  features.
 
-- Some cool sounds include the enemy spotted, battle enter bell, and death sfx, synthesized by yours truly ;) 
+- Some cool sounds include the enemy spotted, battle enter bell, and death sfx, synthesized by yours truly ;)
 
 ![Combat sequence](./Screenshot_20250704_154734.avif)
 
 ### Art
 
-- We have custom-drawn art for the enemies in battle. We also have custom-drawn art for the survivor portraits. Although we were not able to finish the custom pixelart sprites for all characters, we improvised the remaining pixelart for the shopkeeper as well as Fishy Joe.
+- We have custom-drawn art for the enemies in battle. We also have custom-drawn art for the survivor portraits. Although
+  we were not able to finish the custom pixelart sprites for all characters, we improvised the remaining pixelart for
+  the shopkeeper as well as Fishy Joe.
 
 ### Party System
 
-- When we first started planning our game, we kept coming back to a party system where people need to be kicked out due to a lack of resources. The party system is run by scriptable objects, where each survivor passes its object around to other places. The campfire scenes are done by having the people there, but then despawning them while loading in. 
+- When we first started planning our game, we kept coming back to a party system where people need to be kicked out due
+  to a lack of resources. The party system is run by scriptable objects, where each survivor passes its object around to
+  other places. The campfire scenes are done by having the people there, but then despawning them while loading in.

@@ -1,0 +1,49 @@
+---
+title: Video Game AI Projects
+date: 2025
+dateFormat: year
+tags: [video games, ai, pathfinding, procedural generation, clustering, unity, c#, software development]
+---
+
+During a course on video game AI (Cmput 250), we used the game of Pac-Man to implement various pathfinding, clustering,
+and procedural generation algorithms.
+
+I love playing video games, where many genres of games hinge on competent NPC/enemy AI. It's an under-appreciated field,
+but just as interesting as other AI technologies and C.S. in general. People often forget about AI in games, or how it
+is (commonly) a separate field from machine learning and generative AI. These projects broadly cover the topics that
+I've learned, with many more techniques not included:
+
+1. Automatically generate a valid grid around abstract obstacles.
+
+   - Then, culled the grid to generate a navigation mesh for more efficient path finding.
+
+2. Programmed an A\* pathfinding algorithm to optimize finding the best path between destinations.
+   - Up to 75% improvement in search time and space over greedy search.
+
+![Grid generation and A* search](./Screenshot_20250715_175543.avif)
+
+3. Recreated the four Pac-Man ghost AI with a Finite State Machine.
+   - Each ghost
+     [has a distinct "personality" described in this blog](https://web.archive.org/web/20250119214645/https://gameinternals.com/understanding-pac-man-ghost-behavior).
+     Each of their Scatter, Chase, or Frighten states was modeled based on their original and work interchangeably on a
+     base ghost agent.
+   - I also designed my own stalker ghost agent. They stalk Pac-Man from five tiles behind, and occasionally burst
+     towards Pac-Man (at 1.5x speed) before running away. When Frightened, my stalker becomes a taunter, running 5 tiles
+     ahead but never in eating range of Pac-Man.
+
+![Ghost enemy AI](./Screenshot_20250715_180555.avif)
+
+4. Built a K-Means clustering algorithm to classify thousands of Pac-Man game data and predict churn (whether a player
+   stops playing the game).
+   - Efficient data structure to handle the multiple iterations of cluster improvements, processing thousands of
+     datapoints each time.
+   - This also required normalizing data such as hours played, total/average/max score, and number of pellets/ghosts
+     eaten. Quantifying the data into one mean score for classification.
+
+![K-Mean clustering visualized](./Screenshot_20250715_180022.avif)
+
+5. Designed a Markov Chain to procedurally generate Pac-Man levels.
+   - Given a dataset of levels generated with certain "features", my Markov Chain determines these features to create
+     similar levels.
+
+![Markov chain level generator](./Screenshot_20250715_180117.avif)

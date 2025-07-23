@@ -38,7 +38,7 @@ export default function AboutMe() {
         </p>
         <HorizontalLine />
         <h1 className="font-medium text-4xl pt-4 mb-0"> Technologies </h1>
-        <h2 className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3">
+        <h2 className="font-medium mt-8 mb-3">
           A list of technologies, languages, and tools that I am familiar with:
         </h2>
 

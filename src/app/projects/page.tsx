@@ -5,7 +5,7 @@ export default async function ProjectGrid() {
   const projects = await getAllProjects();
 
   return (
-    <div className="mx-auto my-10 max-w-7xl px-6">
+    <div className="mx-auto max-w-7xl my-10 px-6">
       <h1 className="text-5xl font-bold text-center mb-6 md:text-left">
         Projects
       </h1>

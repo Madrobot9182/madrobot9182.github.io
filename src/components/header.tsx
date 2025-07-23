@@ -8,7 +8,7 @@ export default function Header() {
         aria-label="Global"
       >
         <div className="flex md:flex-1 justify-start ">
-          <Link href="/" className="text-3xl font-bold">
+          <Link href="/" className="text-2xl font-bold">
           严
           {/* <Image src={favicon} alt="严 yan" width={32} height={32}/> */}
           </Link>

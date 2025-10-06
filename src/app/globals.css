@@ -8,6 +8,89 @@ ul ul, ul ol, ol ul, ol ol {
   margin-bottom: 0;
 }
 
+/* For sugar-high code highlight */
+
+:root {
+  --sh-class: hsl(207, 62%, 53%); /* base0d - blue */
+  --sh-identifier: hsl(229, 37%, 20%); /* base00 - dark blue */
+  --sh-sign: hsl(229, 13%, 59%); /* base04 - match comment gray */
+  --sh-property: hsl(194, 71%, 46%); /* base0c - cyan */
+  --sh-entity: hsl(229, 50%, 60%); /* base0e - violet */
+  --sh-jsxliterals: hsl(25, 66%, 47%); /* base09 - orange */
+  --sh-string: hsl(49, 50%, 45%); /* base0b - green */
+  --sh-keyword: hsl(336, 22%, 50%); /* base0f - magenta */
+  --sh-comment: hsl(229, 13%, 59%); /* base04 - light gray */
+}
+
+.dark {
+  --sh-class: hsl(207, 62%, 63%); /* base0d - lighter blue */
+  --sh-identifier: hsl(229, 16%, 65%); /* base05 - light */
+  --sh-sign: hsl(229, 16%, 65%); /* base05 - light */
+  --sh-property: hsl(194, 71%, 56%); /* base0c - lighter cyan */
+  --sh-entity: hsl(229, 50%, 70%); /* base0e - lighter violet */
+  --sh-jsxliterals: hsl(25, 66%, 57%); /* base09 - lighter orange */
+  --sh-string: hsl(49, 50%, 55%); /* base0b - lighter green */
+  --sh-keyword: hsl(336, 22%, 60%); /* base0f - lighter magenta */
+  --sh-comment: hsl(229, 13%, 59%); /* base04 - gray */
+}
+
+/* code blocks themselves */
+pre {
+  @apply bg-gray-100 dark:bg-gray-900;
+  @apply border border-gray-200 dark:border-gray-800;
+  @apply rounded-lg p-4 mb-6;
+  @apply overflow-x-auto;
+}
+
+code {
+  @apply text-sm font-mono;
+}
+
+/* Inline code styling */
+:not(pre) > code {
+  @apply bg-gray-100 dark:bg-gray-800;
+  @apply text-gray-800 dark:text-gray-200;
+  @apply px-1.5 py-0.5 rounded;
+  @apply text-sm;
+}
+
+/* .sh__token--class {
+  color: var(--sh-class);
+}
+
+.sh__token--identifier {
+  color: var(--sh-identifier);
+}
+
+.sh__token--sign {
+  color: var(--sh-sign);
+}
+
+.sh__token--property {
+  color: var(--sh-property);
+}
+
+.sh__token--entity {
+  color: var(--sh-entity);
+}
+
+.sh__token--jsxliterals {
+  color: var(--sh-jsxliterals);
+}
+
+.sh__token--string {
+  color: var(--sh-string);
+}
+
+.sh__token--keyword {
+  color: var(--sh-keyword);
+}
+
+.sh__token--comment {
+  color: var(--sh-comment);
+} */
+
+/* Original css */
 /* :root {
   --background: #ffffff;
   --foreground: #171717;

@@ -1,0 +1,49 @@
+---
+title: MultiPronuncerAI
+date: 2025
+dateFormat: year
+tags: [AI, Azure, Audio, Speech, Language, Web]
+---
+[MultiPronuncerAI](https://multi-pronuncer-ai.vercel.app/) is a simple website for practicing speaking in different languages and receiving instant quantitative feedback on their accuracy. 
+
+Check it out at - [https://multi-pronuncer-ai.vercel.app/](https://multi-pronuncer-ai.vercel.app/)
+
+# Pronunciation Practicer
+Let's say you were interested in practicing your speaking skills in English. Then, for a straightforward workflow of testing your English proficiency:
+1. Search for and select your language (and dialect) from the dropdown menu. There are common filters for popular languages, alongside languages with multiple variants.
+
+![Language selection dropdown](./Screenshot_20251005_190145.avif)
+
+2. After typing up a few sentences to practice on, click on "Start Practice" and the microphone icon to start practicing your speech. 
+    - The browser will ask for permission to access the microphone. Please click yes, unless you like staring at an unresponsive screen with nothing to do.
+3. Feel free to listen back to your own recorded voice, or click on the microphone for a second attempt. You can also download your own soundclips (if you're really attached to the sound of your own voice), or just completely start over with a new prompt.
+
+![Post record screen](./Screenshot_20251005_183438.avif)
+
+4. Click on "Analyze Pronunciation" to let the AI (Microsoft Azure) process the recording and return a detailed breakdown of your pronunciation ability:
+
+- The Pronunciation Results section shows your overall score averaged over three criteria:
+    - **Accuracy**: How precisely each word was pronounced. Each word is broken down to its phonetic sounds and scored for how close it matches the actual word, which is actually really cool.
+    - **Fluency**: How naturally/smoothly the speech was. Likely done by Microsoft's supervised AI model trained on tons of audio of people talking.
+    - **Completeness**: How much of the text was pronounced. This score is affected by including extra words or omitting them entirely.
+
+![Pronunciation Results screen](./Screenshot_20251005_184512.avif)
+
+It's fascinating to see how spoken language gets quantified into value, so I left my Azure logs in the inspect console for everyone to see for themselves.
+
+- The Word Analysis breaks down the percentage accuracy and any error between every single word, color-coded as:
+    - **Green**: Correct, no error detected.
+    - **Red**: Mispronounced, word was spoken, but incorrect enough to be considered a mistake.
+    - **Gray**: Omitted, a word that was supposed to be said but was not.
+    - **Yellow**: Extra, an extra word that was inserted where it never existed.
+
+![Word Analysis screen](./Screenshot_20251005_184534.avif)
+
+
+# Translator
+Since I was already using the Microsoft Speech API, I figured I'd also try implementing a translator on the same website. I'll be honest, there is no benefit to using this over any other fully fledged services like Google Translate or Deepl, I just considered this a goofy little detour that gave me a bigger headache to develop than it deserves. Because of course the translate SDK and pronunciation SDK are called differently enough that I (very ironically) had to make translators for my types just to reuse my dropdown and language components. Translate-ception, if you will
+
+- Language Auto Detect and instant results as you type
+- Huge selection of languages (supported by Microsoft Azure). Although some languages don't work despite being listed in Microsoft's official doc.
+
+![Translation screen](./Screenshot_20251005_191419.avif)

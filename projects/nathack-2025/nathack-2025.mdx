@@ -1,13 +1,102 @@
 ---
-title: NatHack 2025 AttentionSpan.AI
-date: 2025
+title: NatHack 2025
+date: 2025-11-14
 dateFormat: year
 tags: [hackathon, ai, game, pytorch, ml, neural networks, python, react]
 ---
 
-NatHack 2025 at the University of Alberta is an annual hackathon focused on hardware oriented solutions to topics in Neuroscience, Medicine, Education, and the environment. I was really thankful to be given the opportunity to compete over 4 full days of prototyping, developing, and pitching this project, presented by:
+NatHack 2025 at the University of Alberta is an annual hackathon focused on hardware-oriented projects in Neuroscience, Medicine, Education, and the environment. This year, I got to compete over 4 full days of prototyping, developing, and pitching Focus Tree, by our team of 5, AttentionSpan.Ai. 
+
+This page covers the technical aspects of our submission. I write about the personal experience of [my first hackathon in this blogpost](/blog/first-hackathon)
 
 # AttentionSpan.Ai
 
-![Our pop up graph, showing levels of focus and fatigue](./cover.avif)
+Our pitch revolved around helping students and young workers struggling with shorter attention spans due to the prevalence of the internet/social media. Unlike traditional focus apps that restrict you from opening certain apps and websites, we propose a gamified incentive model that engages the users personally with a dynamic reward loop to naturally mold good habits.
 
+We achieve this by turning concentration into our game, FocusGarden. Using the Muse 2 headpiece to predict levels of focus and fatigue, we can both notify users when they deviate from an ideal mental state and track their progress throughout a study/work session. Depending on how well they perform (staying focused, taking breaks when prompted), they earn a proportional number of coins, which can be spent on expanding and upgrading the garden. Encorporating the philosophy from established research and other immensely successful idle games, we make progression fun and visceral through genuine cognitive performance. 
+
+![Flowchart of our architecture](./FlowChart.avif)
+
+## The Model Pipeline
+I was responsible for creating the AI pipeline, from data collection, preprocessing, training, and inferencing using live user data. At the high level:
+1. We connected the Muse 2 to our laptop using `brainflow`, a Python library that lets us read raw EEG and gyro/accelerometer data directly as bursts of datastreams. We then make a simple script that collects a minute of data at a time, then asks the user to rate their level of focus and fatigue from a scale of 1-5. This data is processed into usable features (see next section) and saved into parquet files as our labeled datasets.
+2. Using the packages `pytorch-lightning` and `hydra`, I wrote a fairly standard training script that fits a PyTorch multitarget model (classification and regression layered into the same matrix of weights). I also wrote a custom dataloader to read all our parquet files into training and validation sets. 
+	- Pytorch-lightning essentially wraps a normal Pytorch network into its own trainer object, blackboxing the normal PyTorch training loop via a Trainer object. Hydra defines a set of YAML config files that can be accessed from main and overridden from the console.
+	- This `cfg` object is supposed to be passed around as a parameter, but it became really frustrating to deal with relative paths and wrong behavior when backend threads needed configs outside a main function. Ended up writing a helper script to properly "compose" and fetch the config, massive headache otherwise.
+
+```python3
+# Simple PyTorch network to convolve the many EEG signals
+self.conv1 = nn.Conv1d(n_channels, hidden_dims[0], kernel_size=5, padding=2)
+self.bn1 = nn.BatchNorm1d(hidden_dims[0])
+self.conv2 = nn.Conv1d(hidden_dims[0], hidden_dims[1], kernel_size=3, padding=1)
+self.bn2 = nn.BatchNorm1d(hidden_dims[1])
+self.pool = nn.AdaptiveAvgPool1d(1)
+self.relu = nn.ReLU()
+
+# Task-specific heads
+self.fc_class = nn.Linear(hidden_dims[1], n_classes)
+self.fc_reg = nn.Linear(hidden_dims[1], n_outputs)
+```
+
+3. Both the final checkpoint (`.ckpt`) and model (weights themselves as `.pt` files) are saved for future use. The backend runs a background thread to read a real user's brainwaves, then queries the model for the likelihood and levels of focus and fatigue in real time. We can also "recalibrate" the model in the user's mind by tuning our checkpoint with live data. We made our own focus test to simulate the mind for this purpose.
+4. Throughout the whole Hackathon, we continued to collect data on ourselves as we worked, capturing our mental states throughout the day, across varying states of exhaustion and locked in. I created 3 models, one for each day from the weekend onwards, representing the progress we made throughout the hackathon
+
+## Data Preprocessing
+The goal of the post-processing pipeline was to transform raw EEG and motion sensor data from the Muse 2 headset into interoperable features such as band-power and movement that reflect the user’s mental state (focus or fatigue). Raw EEG signals are extremely noisy to begin with, being affected by physical movement (eg, blinking, jaw movement, muscle tension), and electronic interference (eg, power-line hums). Movement of the head, however, could still represent meaningful data (eg, looking around when bored), so we also save the headset movement sensors.
+
+An important step is standardizing the frequencies of EEG signals to sample as features. Brainwaves vary drastically between people, so standardizing the data in a meaningful way will allow for generalization across populations. Key features of EEG data are computed as the power within the band and the mean of the PSD value corresponding to said frequency. [There are many more bands explained in greater detail here -- the main source I referenced for my processing pipeline.](https://github.com/universalus/EEG-States-Classification)
+
+### Signal Cleaning (Filtering)
+Remove systematic noise and retain the frequency range containing brain activity (1–50 Hz).
+- Detrending (Constant): Removes DC offset or slow baseline drift due to electrode impedance
+- Band-pass filter (1-50 Hz):  Keeps main EEG components (delta–gamma) and removes high-frequency noise
+- Notch filter (60Hz): Remove 60 Hz power line interference (North America standard)
+
+### Artifact Rejection
+Remove samples corrupted by physiological or technical artifacts (e.g., blinks, jaw clenching, loose electrodes).
+- Amplitude-based Rejection: EEG signals rarely exceed ±100 µV under normal conditions. Samples beyond that are likely artifacts.
+- Variance-based Rejection: Rejects the top 5 % of high-variance segments that typically contain transients or motion spikes.
+- Combine both to catch and cull out outlier data.
+
+### Motion Contamination Check
+Skip segments when the headset is moving significantly.
+- Accelerometer data provides a proxy for physical motion. Large values indicate head movement and are unreliable for EEG interpretation.
+
+### Sliding-Window Band-Power Extraction
+Compute mean power in canonical EEG bands over time using a sliding window of 2 seconds with an overlap of 0.5 (50%) of the window
+- A more detailed explanation can be found in the link above. The general idea is to capture the 5 common ranges:
+    - Delta: Deep sleep/fatigue
+    - Theta: Drowsiness / creative focus
+    - Alpha: Relaxed wakefulness
+    - Beta: Active focus/engagement
+    - Gamma: High cognitive load / sensory binding
+
+### Normalization
+Standardize EEG band powers across sessions and users.
+- Removes individual baseline differences
+- Stabilizes the training of machine-learning models that use these features.
+- Produces dimensionless z-scores centered around 0.
+
+Below is a snippet of what our dataset looks like after collection:
+| timestamp                     | Delta | Theta | Alpha | Beta | Gamma | GryoX | GryoY | GryoZ | AccelX | AccelY | AccelZ | FO-NF | FO-FA | UF-NF | UF-FA | Label_Class |
+| ----------------------------- | ----- | ----- | ----- | ---- | ----- | ----- | ----- | ----- | ------ | ------ | ------ | ----- | ----- | ----- | ----- | ----------- |
+| 2025-11-09 15:43:46.522180    | 0.09  | 0.15  | 0.25  | 0.34 | 0.17  | 0.97  | -0.48 | 0.94  | 7038   | 0      | 0.14   | 0.38  | 0.13  | 0.38  | 0.13  | 0           |
+
+## Frontend App
+![Full screenshot of website](./Screenshot_20251110_153213.avif)
+
+FocusGarden is our web-based game written in React. Starting with a small allowance, the player (ie, user) begins by developing plots of land. After buying seeds from the market, the player can plant a small garden. Once their plants fully grow, they can be sold for more coins to be spent on better plants, more land, and future upgrades. The idea with progression is to give lots of options to work towards, such as expansive upgrade trees, incentivising progress by providing opportunities to scale forward at the player's pace. 
+
+The magic happens once they start a session, in which they tab out to whatever they're working on. As the user remains focused and energized, the plants will grow slightly faster, and their yield is multiplied proportionally to cognitive performance. By contrast, we also disincentivize needless distractions and failing to take breaks when needed by slowing down plant growth and yield. This is visualized by this pop-up window, which visualizes the 4 states our current model classifies:
+
+![Live graph showing four states](./graph.avif)
+
+In a sense, we tune to a user's cognition and produce actionable, emotionally engaging feedback, visualizing brain activity in real time. Instead of walls of confusing stats graphs, the game reflects the user's mental state and nurtures it subconsciously. It's more than gamification; it's biofeedback as play!
+- Sustained focus earns progress
+- Every mindful break prevents burnout
+- Over time, the user develops awareness and discipline without actively thinking about it. No lectures, no boredom.
+
+# Final Words
+A quick shoutout to my fellow teammates in our team, AttentionSpan.Ai: Albert, Marko, Momo, and Mohammad. It was great working with everyone, and I wish yall the best of luck in the future~
+
+[Here is the GitHub repository we submitted for NatHack.](https://github.com/Madrobot9182/AttentionSpan.ai) Note that you do need to connect a Muse 2 and set the correct serial port in the `muse.yaml` config file. [The documentation for BrainFlow is here, including how to set up a synthetic board to simulate a headset.](https://brainflow.readthedocs.io/en/stable/SupportedBoards.html#muse-2) Also note, for the sake of demoing, all the plants grow really fast lol.

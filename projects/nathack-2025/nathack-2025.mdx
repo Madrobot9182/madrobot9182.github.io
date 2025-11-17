@@ -131,11 +131,31 @@ Standardize EEG band powers across sessions and users.
 - Stabilizes the training of machine-learning models that use these features.
 - Produces dimensionless z-scores centered around 0.
 
-Below is a snippet of what our dataset looks like after collection: | timestamp | Delta | Theta | Alpha | Beta | Gamma |
-GryoX | GryoY | GryoZ | AccelX | AccelY | AccelZ | FO-NF | FO-FA | UF-NF | UF-FA | Label_Class | |
------------------------------ | ----- | ----- | ----- | ---- | ----- | ----- | ----- | ----- | ------ | ------ | ------
-| ----- | ----- | ----- | ----- | ----------- | | 2025-11-09 15:43:46.522180 | 0.09 | 0.15 | 0.25 | 0.34 | 0.17 | 0.97 |
--0.48 | 0.94 | 7038 | 0 | 0.14 | 0.38 | 0.13 | 0.38 | 0.13 | 0 |
+Below is a snippet of what our dataset looks like after collection:
+
+**Major wave bands**
+
+| Delta | Theta | Alpha | Beta | Gamma |
+| ----- | ----- | ----- | ---- | ----- |
+| 0.09  | 0.15  | 0.25  | 0.34 | 0.94  |
+
+**Gyroscope**
+
+| GryoX | GryoY | GryoZ |
+| ----- | ----- | ----- |
+| 0.97  | -0.48 | 0.94  |
+
+**Accelerometer**
+
+| AccelX | AccelY | AccelZ |
+| ------ | ------ | ------ |
+| 7038   | 0      | 0.14   |
+
+**Classification levels and category**
+
+| FO-NF | FO-FA | UF-NF | UF-FA | Label_Class |
+| ----- | ----- | ----- | ----- | ----------- |
+| 0.38  | 0.13  | 0.38  | 0.13  | 0           |
 
 ## Frontend App
 

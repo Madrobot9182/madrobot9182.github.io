@@ -4,6 +4,7 @@ import { components } from "../../mdx-components";
 import { DateFormatter } from "@/utils/date-parser";
 import recmaMdxImportReact from "recma-mdx-import-media";
 import recmaMdxChangeImport from "recma-mdx-change-imports"
+import remarkGfm from "remark-gfm";
 
 interface BlogPostProps {
   post: Post;
@@ -19,7 +20,8 @@ export default async function BlogPost({ post }: BlogPostProps) {
       format: "mdx",
       baseUrl: import.meta.url,
       development: false,
-      recmaPlugins: [recmaMdxImportReact, recmaMdxChangeImport]
+      remarkPlugins: [remarkGfm],
+      recmaPlugins: [recmaMdxImportReact, recmaMdxChangeImport],
     },
     parseFrontmatter: true,
   };
@@ -46,7 +48,7 @@ export default async function BlogPost({ post }: BlogPostProps) {
           {readLength} minute read
         </p>
       </div>
-      <div className="wrapper">
+      <div className="wrapper max-w-full overflow-x-hidden">
         <MDXRemote source={post.content} components={components} options={options} />
       </div>
     </div>

@@ -44,6 +44,7 @@ export default async function BlogPost({ post }: BlogPostProps) {
     <div className="mx-auto my-8 px-6 lg:pl-16 lg:pr-8 lg:flex lg:gap-6">
       <article className="flex-1">
         <h1 className="font-extrabold text-5xl mb-6">{post.frontMatter.title}</h1>
+
         <div className="mx-auto flex flex-row justify-between mb-6 gap-x-2">
           <p className="text-gray-800 dark:text-zinc-300 font-medium">
             {DateFormatter(post.frontMatter.date, post.frontMatter.dateFormat)}
@@ -61,9 +62,7 @@ export default async function BlogPost({ post }: BlogPostProps) {
         <MDXRemote source={post.content} components={components} options={options} />
       </article>
 
-      <aside className="hidden lg:block w-3xs sticky top-20 max-h-[85vh] pl-3 border-l border-gray-200 dark:border-zinc-700 overflow-visible">
-        <TableOfContents />
-      </aside>
+      <TableOfContents initialWidth={160} />
     </div>
   );
 }

@@ -40,10 +40,18 @@ pre {
   @apply border border-gray-200 dark:border-gray-800;
   @apply rounded-lg p-4 mb-6;
   @apply overflow-x-auto;
+  @apply max-w-full;
 }
 
 code {
   @apply text-sm font-mono;
+}
+
+pre code {
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  /* white-space: pre; */
+  /* word-break: normal; */
 }
 
 /* Inline code styling */

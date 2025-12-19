@@ -3,6 +3,7 @@ import React, { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import { highlight } from "sugar-high";
 import Image, { ImageProps as NextImageProps } from "next/image";
+import { ItchIframe } from "./projects/game-engine-350/itch-iframe";
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
 type ParagraphProps = ComponentPropsWithoutRef<"p">;
@@ -126,6 +127,8 @@ export const components = {
       {...props}
     />
   ),
+
+  ItchIframe,
 };
 
 declare global {

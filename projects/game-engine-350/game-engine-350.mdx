@@ -5,19 +5,182 @@ dateFormat: year
 tags: [video games, c++, engine, sfml, software development]
 ---
 
-While pursing the certificate in computer game development at the UofA, I participated in a game engine class (CMPUT 350). We focused on rigeous memory and performance optimization in c++, engine architecture, graphics rendering, and common game features like camera movements and physics collisions. Both games below represents the two capstone projects, each implementing unique architecture and features we learnt and implemented ourselves. 
+While pursing the certificate in computer game development at the UofA, I participated in a game engine class (CMPUT
+350). We focused on rigorous memory and performance optimization in c++, engine architecture, graphics rendering, and
+common game features like camera movements and physics collisions. Both games below represents the two capstone
+projects, each implementing unique architecture and features we learnt and implemented ourselves. The only external
+dependency was [SFML - a multimedia library](https://www.sfml-dev.org/), to manage cross platform graphics rendering,
+input, and audio.
 
 # Bolo - Object-Oriented Programming
+
 <ItchIframe
   src="https://itch.io/embed/4109517?border_width=2&amp;bg_color=161616&amp;fg_color=dedede&amp;link_color=003e7e&amp;border_color=37ff37"
   width="554"
   height="169"
 />
 
+Bolo is a top down tank shooter based off the original
+[1982 Apple II game (not to be confused with the other 1987 Bolo by Stuart Cheshire)](<https://en.wikipedia.org/wiki/Bolo_(1982_video_game)>).
+The player moves around a procedurally generated maze, attempting to hunt and destroy the 6 bases on the map to progress
+to harder levels. Destroying enemies and bases rack up score, hence the very arcady nature of the game.
+
+## Engine Structure
+
+Making a object-oriented engine is conceptually simple when you think about what needs to happen on every frame.
+Generally, the engine loop looks like this:
+
+1. Remove any objects which are no longer alive.
+2. Add any objects that have been created in the last frame.
+3. Process any key hits/inputs
+4. Update all game objects
+5. Process collisions
+6. Do late updates on all game objects
+7. Render the background
+8. Render the foreground
+
+where depending on how your rendering graphics and defining objects some steps can be broken into multiple subparts.
+SFML for example defines a `RenderWindow` object which we "draw" SFML shapes (lines, circles, rectangles) into, then we
+call `window.draw()` at the end of each frame to render. A loop filters out background/foreground objects, defining the
+order we draw shapes onto the window. `window.clear()` also needs to be called so the previous frame doesn't persist
+over. These all need to be done during the rendering steps, and can logically become their own intermediate steps
+withing the engine loop above.
+
+From the perspective of a engine developer, we only provide a "context window" so the game programmers can interface
+with the engine without directly modifying it. Because the engine is meant to be portable across different projects,
+this abstraction both abstracts and simplifies engine commands to well documented functions within each view. A portion
+of our game context looked like:
+
+```cpp
+class GameContext
+{
+  EngineView *EngineContext;
+  DrawContext *ScreenContext;
+  DrawContext *GUIContext;
+  // Other context as needed...
+};
+```
+
+Where `EngineView` provides functions to add and get objects in the engine, and `DrawContext` simplifies drawing logic,
+screen resizing, and segmenting portions of the screen into simple functions. Bolo defined the right hand side as the
+GUI window, containing its own coordinate system and conversion logic.
+
+SCREENSHOT OF SCREEN+GUI
+
+### Game Objects
+
+All user made objects inherit from a base `GameObject` class, containing the virtual functions that the engine executes
+on every frame. Notably, this means that each object is responsible for defining all of its behaviors independent of all
+other objects. .
+
+```cpp
+class GameObject
+{
+  virtual void Update(GameContext *context);
+  virtual void RenderForeground(GameContext *context);
+  virtual bool IsAlive();
+  // Other logic like handling input, render background...
+};
+```
+
+We also define collision objects, which adds a bounding box and a `CollisionEnter` function to implement collision
+logic. The engine checks collisions between all dynamic and static objects (static-static checks are skipped, they never
+move), only calling `CollisionEnter` if a hit is found. Beyond a simple bounding box, objects like the player, bullets,
+and enemies, are defined by their individual shapes. Geometry calculations for each type.....
+
+```cpp
+class CollisionObject : public GameObject
+{
+  virtual bool IsStatic() const = 0;
+  virtual void CollisionEnter(const std::shared_ptr<CollisionObject> &obj) = 0;
+  virtual const Rect &GetBounds() = 0;
+  virtual const std::vector<Shape> &GetShapes() = 0;  // Shape is one of circle | rectangle | line
+};
+```
+
+### TODO COLLISIONS????
+
+...
+
+### Memory Management
+
+The engine stores multiple vector of shared pointers of game objects which is iterated on every frame, a master vector
+and two collision vectors for static and dynamic objects. Since every game object is a different size (depending on how
+much the user implements), we rely on this dynamic heap allocation and pass pointers around between systems. Of course,
+this memory allocation and scattered access is very slow, but hard to avoid in a Object-Oriented program where objects
+can't guarantee the size of their objects and so cannot be aligned in consecutive memory. This suboptimal memory access
+is what we address in the second engine/game with ECS, a completely different approach to object storage and access.
+
+```cpp
+// 3 vectors, filtering objects if they are collisions and/or static
+std::vector<std::shared_ptr<GameObject>> mObjects;
+std::vector<std::shared_ptr<CollisionObject>> mDynamicColObjects;
+std::vector<std::shared_ptr<CollisionObject>> mStaticColObjects;
+```
+
+Because of this system, the most annoying part of developing Bolo was managing references between and within objects. As
+an example, when a bullet hits an enemy, we needed to know whether the bullet was shot by the player or the enemy before
+incrementing the score. Even worst, when a player shoots and spawns in a bullet, we need a pass in a reference to the
+player itself to prevent collisions against a players own bullets. Since the engine stores shared pointers of game
+objects, searching through this vector every frame would cost expensive dynamic casts. Hence, the best solution ended up
+devolving into chains of weak pointers to shared pointers of objects, which became convoluted and hard to debug.
+
+## Game elements
+
+The game itself is defined in a separate folder from the engine. `Bolo.h` is defined as the master object, initializing
+the first game objects and controlling the game loop by maintaining the state of the game. The basic game loop goes as:
+
+1. Show home screen. Prompt user to input maze density
+2. Generate the maze and bases
+3. Gameplay (Player moves and shoots tank) 4.1. If player dies, show game over screen and reset to home screen 4.2. If
+   all bases are destroyed, show congrats screen and generate new level `PLAYER_PROMPT` -> `INIT_LEVEL` -> `GAME_PLAY`
+   -> [{`END_LEVEL` -> `INIT_LEVEL`} OR {`GAME_OVER` -> `PLAYER_PROMPT`}]
+
+### Maze Generation
+
+From a 50x50 grid of "walls", our maze generator does a depth-first search across the whole maze, deleting walls as it
+traverses, until a valid maze is produced. Walls are then culled to the desired density and bases are added where
+there's enough space to spawn enemies. There are many clever ways to represent this grid of walls, but I went with a
+conceptually easy to understand matrix of cells defined like:
+
+```cpp
+struct Cell{
+  bool visited;
+  bool wUp;
+  bool wDown;
+  bool wLeft;
+  bool wRight;
+};
+```
+
+For what we wanted to achieve, this is a very simple and quick method for maze generation.
+
+### Enemies
+
+The enemies themselves just move and shoot semi-randomly. What took the most thought was the enemies and how to stop
+them from getting stuck and endlessly spinning. We initially had it so that the enemy transitioned states once it had
+traveled a distance equal to the base radius. This did not work since a rotation would throw it off and the enemy would
+start spinning at the edge of the base. The solution was to check the intersection between the bounding box of the enemy
+and the base, and transition states once the result was empty.
+
+There was a very annoying bug that happened when an enemy outside the base would move beside the walls of the base when
+the base had low health. Then, the base would regenerate health, and the walls would expand on top of the enemy, making
+the enemy get stuck. Our solution was to make the enemy undo its last action when its bounding box intersected with the
+walls of the base if it was at its largest size. This made it so that the enemies never wandered into the base to begin
+with, even if it was smaller. Another bug was that enemies inside the base would hit an enemy outside the base before it
+left the base, leading to the inner enemy to rotate back into the base. This left a very small chance for the enemy
+inside the base to rotate back into the center of the base, when the base then spawned another enemy, they would both
+get stuck. The fix was to immediately kill an enemy if it spawned and collided with another enemy on the first frame.
+
 ---
-# SKKS - Entity Component System
+
+# SKKS - Entity-Component-Systems
+
 <ItchIframe
   src="https://itch.io/embed/4109606?border_width=2&amp;bg_color=1c456b&amp;fg_color=ffffff&amp;link_color=a15090&amp;border_color=fa5c5c"
   width="554"
   height="169"
 />
+
+SKKS is a physics-based platformer in space, where you can build up speed and drive your momentum to launch around planets with
+satisfying movements.

@@ -41,17 +41,19 @@ pre {
   @apply rounded-lg p-4 mb-6;
   @apply overflow-x-auto;
   @apply max-w-full;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
-code {
-  @apply text-sm font-mono;
-}
-
+/* Code inside pre blocks */
 pre code {
+  @apply text-sm font-mono;
+  
   white-space: pre-wrap !important;
-  word-break: break-word !important;
-  /* white-space: pre; */
-  /* word-break: normal; */
+  word-break: normal !important;
+  word-wrap: normal !important;
+  display: inline-block;
+  
 }
 
 /* Inline code styling */
@@ -59,67 +61,6 @@ pre code {
   @apply bg-gray-100 dark:bg-gray-800;
   @apply text-gray-800 dark:text-gray-200;
   @apply px-1.5 py-0.5 rounded;
-  @apply text-sm;
+  @apply text-sm font-mono;
+  @apply whitespace-nowrap
 }
-
-/* .sh__token--class {
-  color: var(--sh-class);
-}
-
-.sh__token--identifier {
-  color: var(--sh-identifier);
-}
-
-.sh__token--sign {
-  color: var(--sh-sign);
-}
-
-.sh__token--property {
-  color: var(--sh-property);
-}
-
-.sh__token--entity {
-  color: var(--sh-entity);
-}
-
-.sh__token--jsxliterals {
-  color: var(--sh-jsxliterals);
-}
-
-.sh__token--string {
-  color: var(--sh-string);
-}
-
-.sh__token--keyword {
-  color: var(--sh-keyword);
-}
-
-.sh__token--comment {
-  color: var(--sh-comment);
-} */
-
-/* Original css */
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */

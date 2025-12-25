@@ -20,7 +20,7 @@ export function ItchIframe({ src, width, height }: ItchIframeProps) {
   }
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center mb-6">
       <iframe src={src} width={width} height={height}>
         <a href={src}>Link</a>
       </iframe>

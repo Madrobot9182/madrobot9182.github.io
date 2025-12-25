@@ -21,7 +21,7 @@ export default function ProjectIndexGrid({ projects, gridLayout }: ProjectGridPr
           <p className="text-gray-800 dark:text-zinc-300 text-left mb-2">
             {DateFormatter(project.frontMatter.date, project.frontMatter.dateFormat)}
           </p>
-          <div className="relative w-full min-h-42 px-3 py-2.5 mb-2">
+          <div className="relative flex items-center justify-center w-full min-h-42 px-3 py-2.5 mb-2">
             <Image
               src={project.imageCoverURL || PlaceHolder}
               alt={project.slug + " cover image"}

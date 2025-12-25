@@ -5,8 +5,6 @@ dateFormat: year
 tags: [video games, c++, engine, sfml, software development]
 ---
 
-#import {ItchIframe} from "./itch-iframe"
-
 While pursuing the certificate in computer game development at the UofA, I participated in a game engine class (CMPUT
 350). We focused on rigorous memory and performance optimization in c++, engine architecture, graphics rendering, and
 common game features like camera movements and physics collisions. Both games below represent the two capstone projects,
@@ -55,10 +53,10 @@ of our game context looked like:
 ```cpp
 class GameContext
 {
- EngineView *EngineContext;
- DrawContext *ScreenContext;
- DrawContext *GUIContext;
- // Other context as needed...
+  EngineView *EngineContext;
+  DrawContext *ScreenContext;
+  DrawContext *GUIContext;
+  // Other context as needed...
 };
 ```
 
@@ -155,10 +153,9 @@ follows:
 1. Show home screen. Prompt the user to input the maze density
 2. Generate the maze and bases
 3. Gameplay (Player moves and shoots the tank)
-4. If the player dies, show the game-over screen and reset to the home
-   screen 
-5. If all bases are destroyed, show the congrats screen and generate a new level
-PLAYER_PROMPT -> INIT_LEVEL -> GAME_PLAY -> (END_LEVEL -> INIT_LEVEL OR GAME_OVER -> PLAYER_PROMPT)
+4. If the player dies, show the game-over screen and reset to the home screen
+5. If all bases are destroyed, show the congrats screen and generate a new level PLAYER_PROMPT -> INIT_LEVEL ->
+   GAME_PLAY -> (END_LEVEL -> INIT_LEVEL OR GAME_OVER -> PLAYER_PROMPT)
 
 ### Maze Generation
 
@@ -232,8 +229,9 @@ Systems then check all entities if they have a certain subset of components and 
 (raw data). For example, a `MoveSystem` might look for entities with a `LocationComponent` and `MovementComponent`, and
 if so, update their location given the value in movement.
 
-![Unity diagram of ECS](./ECSBlockDiagram.avif) Diagram taken from
-https://docs.unity3d.com/Packages/com.unity.entities@0.1/manual/ecs_core.html
+![Unity diagram of ECS](./ECSBlockDiagram.avif)
+
+Diagram taken from https://docs.unity3d.com/Packages/com.unity.entities@0.1/manual/ecs_core.html
 
 For game development, this requires a big mentality shift. Whereas virtually all game engines and games revolve around
 OOP, writing generalized components and systems for potentially many entities, is the opposite of programming everything
@@ -261,12 +259,11 @@ adding components by type. Templates also allow us to handle any arbitrary compo
 functionality like querying for all entities with certain components:
 
 ```cpp
-entityMgr.template ForEachEntityWith<LocationComponent, MovementComponent, CollisionComponent>(
- [&](ECSEngine::EntityID id, LocationComponent& location, MovementComponent& movement,
-                CollisionComponent& collision)
- {
- // system logic here
- });
+entityMgr.template ForEachEntityWith<LocationComponent, MovementComponent>(
+  [&](ECSEngine::EntityID id, LocationComponent& location, MovementComponent& movement)
+  {
+  // system logic here
+  });
 ```
 
 An atlas texture where multiple sprites are merged into one massive texture. This way, we can keep every sprite loaded
@@ -318,8 +315,7 @@ simple:
 2. Show transition slide in. Build the level.
 3. Gameplay (Player moves around level)
 4. If the player dies, reset the level (transition back to itself)
-5. If
-   player makes it to the portal, transitions to the next level.
+5. If player makes it to the portal, transitions to the next level.
 
 ### Physics
 

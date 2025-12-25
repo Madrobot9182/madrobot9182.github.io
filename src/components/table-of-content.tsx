@@ -13,14 +13,14 @@ interface TableOfContentsProps {
   initialWidth?: number;
 }
 
-export function TableOfContents({ initialWidth = 160 }: TableOfContentsProps) {
+export function TableOfContents({ initialWidth = 200 }: TableOfContentsProps) {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [visible, setVisible] = useState(true);
   const [width, setWidth] = useState(initialWidth);
 
   // Extract headings from the page
   useEffect(() => {
-    const elements = document.querySelectorAll("h2, h3");
+    const elements = document.querySelectorAll("h1, h2, h3");
     const headingData: Heading[] = Array.from(elements).map((elem) => ({
       id: elem.id,
       text: elem.textContent || "",
@@ -57,9 +57,10 @@ export function TableOfContents({ initialWidth = 160 }: TableOfContentsProps) {
           </h3>
           <ul className="space-y-1 text-sm">
             {headings.map((heading) => {
-              const indentClass = heading.level === 3 ? "pl-3" : "pl-0";
+              const indentClass = `pl-${(heading.level - 1) * 2} bold`;
+
               return (
-                <li key={heading.id} className={indentClass}>
+                <li key={heading.id} className={indentClass + " line-clamp-2"}>
                   <a
                     href={`#${heading.id}`}
                     className="block py-1 text-blue-600 dark:text-blue-400 hover:underline break-words"

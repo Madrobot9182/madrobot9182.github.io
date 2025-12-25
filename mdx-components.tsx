@@ -3,6 +3,7 @@ import React, { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import { highlight } from "sugar-high";
 import Image, { ImageProps as NextImageProps } from "next/image";
+import ItchIframe from "@/components/post-components/itch-iframe";
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
 type ParagraphProps = ComponentPropsWithoutRef<"p">;
@@ -16,7 +17,7 @@ export const components = {
   h2: (props: HeadingProps) => (
     <h2 className="text-gray-800 dark:text-zinc-200 font-bold text-xl pt-3 pb-3" {...props} />
   ),
-  h3: (props: HeadingProps) => <h3 className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3" {...props} />,
+  h3: (props: HeadingProps) => <h3 className="text-gray-800 dark:text-zinc-200 font-medium pt-3 pb-3" {...props} />,
   h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
   p: (props: ParagraphProps) => <p className="text-gray-800 dark:text-zinc-300 leading-snug pb-4" {...props} />,
   ol: (props: ListProps) => (
@@ -55,7 +56,7 @@ export const components = {
     );
   },
   hr: (props: ComponentPropsWithoutRef<"hr">) => (
-    <hr className="border-zinc-300 dark:border-gray-800 my-4" {...props} />
+    <hr className="border-zinc-800 dark:border-gray-300 my-4" {...props} />
   ),
 
   // For custom image processing
@@ -126,6 +127,8 @@ export const components = {
       {...props}
     />
   ),
+
+  ItchIframe,
 };
 
 declare global {

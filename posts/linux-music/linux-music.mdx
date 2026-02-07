@@ -1,0 +1,37 @@
+---
+title: Music Production in Linux - My Reaper Setup using yabridge
+date: 2026-02-07
+dateFormat: full
+tags: [audio, music, linux, unix, daw, reaper, yabridge, wine]
+---
+
+When I first fell in love with producing digital music during COVID, I remember binging endless YouTube videos about computer setups, the best plugins/VSTs, proper workflows, and even how to treat a room for the best sound profile. I felt so overwhelmed by the wide variety of choices that it paralyzed me for weeks on end before I ever started putting notes into songs. So, for anyone interested or starting to make music for the first time, this blog covers my current setup under Arch Linux, with some handy tips and tricks that I wish I had known beforehand.
+
+# Preface - The Most Important Advice
+
+If you haven't built your music setup yet and are curious about Linux, **use Windows instead**. While support for the Linux ecosystem is improving year after year, the majority of audio software is still built for Windows users first (then Mac second). All my configurations below are justto get my plugins running under Linux, extra complexity that takes away my focus to produce music. Coming from a background in Computer Science and a minor in Music, I would rather prioritize a seamless experience so as not to hinder my creativity, than spend some amount of time tinkering and distracting me from my workflow. Frankly, my setup is tailored much more to high-end PC users who want to perform music on the side. So, for the composers trying to make music on a computer, a simple Windows 10 laptop/MacBook is all you need to get started.
+
+The most popular digital audio workstations (DAWs) such as [Pro Tools](https://www.avid.com/pro-tools),
+[Logic Pro](https://www.apple.com/logic-pro/), [FL Studio](https://www.image-line.com/), and [Ableton](https://www.ableton.com/) 
+
+If, for some reason, you don't want to use Windows as your main operating system, you can also try
+- Dual-booting: a dedicated Windows OS just for audio production. Using a dedicated SSD/Nvme for separation of concerns: your main computer and audio workstation are now separate. There are also Linux-based "creativity workstation" OS's for creators that are designed to be dual-booted, or even as your main OS.
+- Virtual Machines: definitely doable, but more annoying than it's worth imo. Especially with dedicated gear like audio interfaces, mixing boards, and physical (MIDI) instruments, you'd have to pass through those devices to the VM or deal with strange behavior. My interface under a Windows 11 VM would randomly cut out, and I'd have to reboot every single time.
+
+# My Linux Setup
+
+Against my own advice, my main PC runs Arch Linux like a monolith, i.e., every single package is installed natively without any containers/dockers -- rawdogging my system with 500+ packages, if you will. [Reaper](https://www.reaper.fm/) is the DAW I use personally, but other popular Linux DAWs include [Bitwig](https://www.bitwig.com/) and [Ardour] (https://ardour.org/), and even many of the Windows DAWs mentioned above work under Wine relatively well, too. 
+
+Pipeline pulseaudio packages
+
+yabridge and wine
+
+configuring a wineprefix and moving plugins into it
+
+# Other Tips
+
+Audio interface script
+
+My actual reaper workflow??
+
+free recommended plugin resources

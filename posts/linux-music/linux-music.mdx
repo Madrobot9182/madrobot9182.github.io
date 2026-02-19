@@ -7,6 +7,8 @@ tags: [audio, music, linux, unix, daw, reaper, yabridge, wine]
 
 When I first fell in love with producing digital music during COVID, I remember binging endless YouTube videos about computer setups, the best plugins/VSTs, proper workflows, and even how to treat a room for the best sound profile. I felt so overwhelmed by the wide variety of choices that it paralyzed me for weeks on end before I ever started putting notes into songs. So, for anyone interested or starting to make music for the first time, this blog covers my current setup under Arch Linux, with some handy tips and tricks that I wish I had known beforehand.
 
+![reaper and mixer](./Screenshot_20260219_152149.avif)
+
 # Preface - The Most Important Advice
 
 If you haven't built your music setup yet and are curious about Linux, **use Windows instead**. While support for the Linux ecosystem is improving year after year, the majority of audio software is still built for Windows users first (then Mac second). All my configurations below are justto get my plugins running under Linux, extra complexity that takes away my focus to produce music. Coming from a background in Computer Science and a minor in Music, I would rather prioritize a seamless experience so as not to hinder my creativity, than spend some amount of time tinkering and distracting me from my workflow. Frankly, my setup is tailored much more to high-end PC users who want to perform music on the side. So, for the composers trying to make music on a computer, a simple Windows 10 laptop/MacBook is all you need to get started.
@@ -16,22 +18,87 @@ The most popular digital audio workstations (DAWs) such as [Pro Tools](https://w
 
 If, for some reason, you don't want to use Windows as your main operating system, you can also try
 - Dual-booting: a dedicated Windows OS just for audio production. Using a dedicated SSD/Nvme for separation of concerns: your main computer and audio workstation are now separate. There are also Linux-based "creativity workstation" OS's for creators that are designed to be dual-booted, or even as your main OS.
-- Virtual Machines: definitely doable, but more annoying than it's worth imo. Especially with dedicated gear like audio interfaces, mixing boards, and physical (MIDI) instruments, you'd have to pass through those devices to the VM or deal with strange behavior. My interface under a Windows 11 VM would randomly cut out, and I'd have to reboot every single time.
+- Virtual Machines: definitely doable, but more annoying than it's worth imo. Especially with dedicated gear like audio interfaces, mixing boards, and physical (MIDI) instruments, you'd have to pass through those devices to the VM or deal with strange behavior. Audio is especially finicky, my audio interface under a Windows 11 VM would randomly cut out and requires a reboot. Nevertheless, it's still possible. Here is my QEMU virt-manager setup: 
+
+![win11 virt-manager](./Screenshot_20260219_151344.avif)
 
 # My Linux Setup
 
-Against my own advice, my main PC runs Arch Linux like a monolith, i.e., every single package is installed natively without any containers/dockers -- rawdogging my system with 500+ packages, if you will. [Reaper](https://www.reaper.fm/) is the DAW I use personally, but other popular Linux DAWs include [Bitwig](https://www.bitwig.com/) and [Ardour] (https://ardour.org/), and even many of the Windows DAWs mentioned above work under Wine relatively well, too. 
+This won't be a dummy's guide to Linux so I'm not explaining every single step to copy my setup. Instead, I compell you to practice reading documentation. [The Arch Linux Wiki](https://wiki.archlinux.org/title/Main_page) covers 80-90% of my questions and will be sufficient, even for users of other Distros. Of course, don't limit yourself to just Arch -- the internet is vast, plus LLM's have already scrapped the entire web.
 
-Pipeline pulseaudio packages
+Against my own advice, my main PC runs Arch Linux like a monolith, i.e., every single package is installed natively without any containers/dockers -- rawdogging my system with 3000+ packages, if you will. [Reaper](https://www.reaper.fm/) is the DAW I use personally, but other popular Linux DAWs include [Bitwig](https://www.bitwig.com/) and [Ardour] (https://ardour.org/), and even many of the Windows DAWs mentioned above work under Wine relatively well, too. 
 
-yabridge and wine
+PipeWire is the modern multimedia framework for audio and video, meant to replace PulseAudio, Jack, and ALSA. Install `pipewire pipewire-pulse`, and start their services. I also use `wireplumber`, a PipeWire session manager, although most users wont need any special configurations. Your DAW should now be able to select PipeWire (or PulseAudio) as your output source.
 
-configuring a wineprefix and moving plugins into it
+Now if you rely on windows plugins/VSTs like I still do, then you'll need some compatibility tool to run them under Linux. I use [yabridge](https://github.com/robbert-vdh/yabridge), which uses `wine` to run 32-bit and 64-bit Windows plugins natively. However, yabridge currently only supports wine v9.21, and additional setup is needed if you want to maintain multiple versions on your main system:
+
+1. First create a wineprefix, where you will place your plugins and run it from, `winetricks` provides a visual GUI to help create one quickly. Then place all your Windows plugins into the drive_c folder. I usually organize them inside `drive_c/Program Files/`
+2. Then use `yabridgectl add "/PATH/TO/PLUGIN/FOLDER"` for each folder with plugins. `yabridgectl list` shows all current paths, and `yabridgectl rm` removes paths. Finally run `yabridgectl sync` to initialize all your plugins. See https://github.com/robbert-vdh/yabridge for full details.
+3. You'll need a build of wine v9.21. Follow the instructions on https://gitlab.winehq.org/wine/wine/-/wikis/Building-Wine to build it manually. If you also strangers online (or too lazy to build it yourself), you can download a prebuilt version such as https://github.com/Kron4ek/Wine-Builds/releases.
+4. Now whenever you want to run your DAW, set your environments: `WINEPREFIX` to your prefix with the plugins, and append `PATH` with the path to wine v9.21 bin folder. For example, my environment variables are:
+`WINEPREFIX=/home/ryan/.local/share/wineprefixes/wine-yabridge PATH=/home/ryan/Development/Wine/wine-9.21-staging-tkg-amd64/bin:/usr/local/sbin:/usr/local/bin:/usr/bin`
+You could set these permanently, or make a bash script that sets these variables temporary before running the DAW. KDE Plasma has the Menu Editor which lets me set launch commands so I can just open Reaper like any normal application
+
+![Kde menu editor reaper](./Screenshot_20260219_143912.avif)
+
+Your plugins should now be visible and usable in your DAW! Complicated apps like Native Access may have some issues running, but this setup works for all the VSTs I use regurarly.
 
 # Other Tips
+My audio interface, the [ART USB IV 4-in/2-out](https://artproaudio.com/audiointerfaces/product/726454/usbiv), splits the speaker and headphone outputs to the front and rear channel respectively. Obviously since all applications uses the front left/right channels my headphones don't have sound. This script uses `pactl` to manually create a "speaker" and "headphone" sink, that can be selected as if they are separate devices. Use `pactl list` to find your device name and replace it for each `pw-link` command.
 
-Audio interface script
+```bash
+#!/bin/bash
+# Creates the speaker/headphone sinks
+pactl load-module module-null-sink sink_name=speakers object.linger=1 media.class=Audio/Sink media.role=music channel_map=front-left,front-right
+pactl load-module module-null-sink sink_name=headphones object.linger=1 media.class=Audio/Sink media.role=music channel_map=front-left,front-right
 
-My actual reaper workflow??
+# Force headphone sink to be active (May not be needed for you)
+pactl set-sink-volume headphones 65536
+pactl set-sink-mute headphones 0
+pactl suspend-sink headphones 0
 
-free recommended plugin resources
+sleep 1
+
+# Link the sinks to the soundcard
+# The name of my audio interface is: alsa_output.usb-Ploytec_GmbH_USB_IV_Audio_Interface_4in_4out_no_serial_number-00.analog-surround-40
+pw-link speakers:monitor_FL alsa_output.usb-Ploytec_GmbH_USB_IV_Audio_Interface_4in_4out_no_serial_number-00.analog-surround-40:playback_FL
+
+pw-link speakers:monitor_FR alsa_output.usb-Ploytec_GmbH_USB_IV_Audio_Interface_4in_4out_no_serial_number-00.analog-surround-40:playback_FR
+
+pw-link headphones:monitor_FL alsa_output.usb-Ploytec_GmbH_USB_IV_Audio_Interface_4in_4out_no_serial_number-00.analog-surround-40:playback_RL
+
+pw-link headphones:monitor_FR alsa_output.usb-Ploytec_GmbH_USB_IV_Audio_Interface_4in_4out_no_serial_number-00.analog-surround-40:playback_RR
+
+# Set the default sink
+pactl set-default-sink speakers
+```
+With some more finesse, you could also rewrite this script into a Wireplumber conf, but I couldn't get it to work myself. I just run this script at startup and it works all the same.
+
+
+## My Reaper Workflow
+The first image of this blog was a screenshot of a previous project (normally my mixing window is on a second window). When I'm actually...
+
+![reaper and plugins](./Screenshot_20260219_152047.avif)
+
+## Free Instruments and VSTs
+Here are a collection of free instrument plugins compiled by me and other friends.
+
+- https://u-he.com/ - Native Linux & Windows Synths and Effects. Their Freeware products are just as capable as their paid counterpart. An easy recommend for me.
+
+- https://labs.spitfireaudio.com/ - Spitfire Audio: LABS (download the Spitfire player). Collection of orchestral, concert, and experimental instruments. 
+
+- https://www.spitfireaudio.com/en-ca/collections/bbc-symphony-orchestra - Spitifre Audio: BBC Symphony Orchestra Discover (50$ but free if you fill out a survey and wait 30 days. Also uses the Spitfire player). Pretty good high quality orchestral instruments.
+
+- www.orchestraltools.com/sinefactory - SineFactory. Offers various decent qualiity instruments. (download the SINE player and download desired instruments)
+
+- https://www.native-instruments.com/en/catalog/music-creation/free/?page=1 - Free instruments through Native Instruments. I used Analogue Dreams and Ethereal Earth before. You need to download Kontakt Player to use these.
+
+- https://valhalladsp.com/ - Fun reverb and delay plugins. The three free options ranges from subtle reverb, to super massive echos and crazy effects.
+
+- https://www.strezov-sampling.com/products/?freebies=1 - Strezov Sampling Instruments. These also use the Kontakt Player. I've used Diamond Jazz Trio instruments in the past. You need the Pulse app to download these: https://pulsedownloader.com/
+
+- https://vital.audio/ - A popular wavetable synth that's highly customizable. A massive community with a terrifying number of user presets here: https://presetshare.com/presets?instrument=2
+
+- https://www.decentsamples.com/product/decent-sampler-plugin/ -  free samples by Dave Hilowitz (check out his Youtube channel). Downloud the plugin and then instruments you want under Freebies
+
+- Soundfonts - You can find .sf2 files for many games easily through google. I use these primarily. Each DAW has a soundfont player already, I think. I recommend the Touhou and SGM soundfonts.

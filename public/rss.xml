@@ -9,13 +9,13 @@
             <link>http://localhost:3000</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 19 Feb 2026 22:23:05 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 22 Mar 2026 19:59:53 GMT</lastBuildDate>
         <atom:link href="http://localhost:3000/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Thu, 19 Feb 2026 22:23:05 GMT</pubDate>
+        <pubDate>Sun, 22 Mar 2026 19:59:53 GMT</pubDate>
         <copyright><![CDATA[All rights reserved 2026]]></copyright>
         <item>
             <title><![CDATA[Music Production in Linux - My Reaper Setup using yabridge]]></title>
-            <description><![CDATA[When I first fell in love with producing digital music during COVID, I remember binging endless YouTube videos about computer setups, the best plugins/VSTs, proper workflows, and even how to treat a room for the best sound profile. I felt so overwhelmed by the wide variety of choices that it paralyz...]]></description>
+            <description><![CDATA[When I first became obsessed with digital music during COVID, I would binge endless YouTube videos about the best plugins/VSTs, workstation setups, best workflows, and even how to acousitcly treat a room. I was overwhelmed by the informatio overload that it paralyzed me for weeks before I ever start...]]></description>
             <link>http://localhost:3000/blog/linux-music</link>
             <guid isPermaLink="true">http://localhost:3000/blog/linux-music</guid>
             <pubDate>Sat, 07 Feb 2026 00:00:00 GMT</pubDate>

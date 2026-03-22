@@ -7,9 +7,9 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp']
   },
   // reactStrictMode: true,
-  turbopack: {
-    root: __dirname
-  },
+  // turbopack: {
+  //   root: __dirname
+  // },
 };
 
 const withMDX = createMDX({

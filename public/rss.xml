@@ -9,10 +9,17 @@
             <link>https://madrobot9182.github.io</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 25 Dec 2025 19:27:49 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 22 Mar 2026 20:07:49 GMT</lastBuildDate>
         <atom:link href="https://madrobot9182.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Thu, 25 Dec 2025 19:27:49 GMT</pubDate>
-        <copyright><![CDATA[All rights reserved 2025]]></copyright>
+        <pubDate>Sun, 22 Mar 2026 20:07:49 GMT</pubDate>
+        <copyright><![CDATA[All rights reserved 2026]]></copyright>
+        <item>
+            <title><![CDATA[Music Production in Linux - My Reaper Setup using yabridge]]></title>
+            <description><![CDATA[When I first became obsessed with digital music during COVID-19, I would binge endless YouTube videos about the best plugins/VSTs, workstation setups, optimal workflows, and even how to acoustically treat a room. I was overwhelmed by the information overload, which paralyzed me for weeks before I ev...]]></description>
+            <link>https://madrobot9182.github.io/blog/linux-music</link>
+            <guid isPermaLink="true">https://madrobot9182.github.io/blog/linux-music</guid>
+            <pubDate>Sun, 22 Mar 2026 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[NatHack 2025 - Cranking 90 Hour Work Shifts in the Hackathon of All Time]]></title>
             <description><![CDATA[NatHack 2025 at the University of Alberta is an annual hackathon focused on hardware-oriented projects in Neuroscience, Medicine, Education, and the environment. This year, I got to compete over 4 full days of prototyping, developing, and pitching Focus Tree, by our team of 5, AttentionSpan.Ai. This...]]></description>

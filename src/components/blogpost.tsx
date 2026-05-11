@@ -41,8 +41,8 @@ export default async function BlogPost({ post }: BlogPostProps) {
   };
 
   return (
-    <div className="mx-auto my-8 px-6 lg:pl-16 lg:pr-8 lg:flex lg:gap-6">
-      <article className="flex-1 max-w-7xl">
+    <div className="mx-auto my-8 px-6 lg:pl-16 lg:pr-8 lg:flex lg:gap-6 min-w-0 w-full">
+      <article className="mx-auto flex-1 min-w-0 max-w-7xl">
         <h1 className="font-extrabold text-5xl mb-6">{post.frontMatter.title}</h1>
 
         <div className="mx-auto flex flex-row justify-between mb-6 gap-x-2">

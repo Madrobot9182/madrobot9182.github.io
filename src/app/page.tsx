@@ -25,7 +25,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="flex-1 text-center lg:text-left lg:pe-16 py-4">
+      <div className="flex-1 min-w-0 text-center lg:text-left lg:pe-16 py-4">
         <Link href="/blog" className="hover:underline font-medium text-4xl mb-0">Recent Blogs</Link>
         <BlogIndexList posts={posts.slice(0,3)} />
 

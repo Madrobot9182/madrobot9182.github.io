@@ -61,17 +61,15 @@ export const components = {
 
   // For custom image processing
   OptimizedImage: ({ src, alt, width, height, ...props }: NextImageProps) => (
-    <div className="flex justify-center">
       <Image
         src={src}
         alt={alt}
         width={width}
         height={height}
-        className="rounded-lg my-6 align-center"
+        className="block mx-auto rounded-lg my-6"
         placeholder="empty"
         {...props}
       />
-    </div>
   ),
 
   code: ({ children, ...props }: ComponentPropsWithoutRef<"code">) => {
@@ -79,13 +77,13 @@ export const components = {
 
     // Inline code (no line breaks)
     if (!value.includes("\n")) {
-      return <code className="px-1 py-0.5 rounded bg-gray-200 dark:bg-zinc-800 text-sm">{children}</code>;
+      return <code className="px-1 py-0.5 rounded bg-gray-300 dark:bg-zinc-800 text-sm">{children}</code>;
     }
 
-    // Block code — relies on parent <pre> for layout
+    // Block code
     const html = highlight(value);
 
-    return <code dangerouslySetInnerHTML={{ __html: html }} {...props} className="whitespace-pre" />;
+    return <code dangerouslySetInnerHTML={{ __html: html }} {...props} />
   },
 
   table: ({ children, ...props }: ComponentPropsWithoutRef<"table">) => (

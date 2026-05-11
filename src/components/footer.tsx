@@ -6,7 +6,7 @@ import RssFeed from "./rss-feed";
 export default function Footer() {
   return (
     <footer
-      className="mex-auto flex flex-col w-full h-fit px-4 py-3"
+      className="mex-auto flex flex-col w-full h-fit px-4 md:px-6 py-3"
       aria-label="Global"
     >
       <div className="flex justify-between items-center">
@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="hidden md:block">
           <div className="flex flex-1 justify-center items-center gap-x-1 text-sm font-semibold">
             <FaCopyright className="size-2.5" />
-            2025 Ryan Yan
+            2026 Ryan Yan
           </div>
         </div>
 

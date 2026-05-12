@@ -1,0 +1,88 @@
+---
+title: A Short Story About an AI Agent Rebooking my Flight
+date: 2026-05-11
+dateFormat: full
+tags: [agentic, ai, automation, api, tech, design]
+---
+
+I happened to be thinking about Agentic AI research right before experiencing it firsthand.
+
+I woke up to discover that one leg of my return flight was cancelled, so I went straight to my booking site to rebook. Customer support has been fully replaced with AI agents, which I have never actually experienced before. I figured rebooking was a common enough process that this would be quick and painless, but this would soon turn into a 2-day adventure of tedium and minor annoyances.
+
+![Image of the cancelled flight](./Screenshot_20260511_155506_edit.avif)
+
+As to why this took me two days, understand that even a simple response to ground the conversation (e.g., greeting the user, confirming it got the query, and is working) takes a few seconds. Every time the AI answered questions about policies, it took a good few minutes. Every time it tried searching for new flights, it would take 10-30 minutes of painstaking waiting.
+
+1. At first, it felt impressive! It asked for my information (booking number, name, DoB), and correctly identified the cancelled portion of my return trip. I assumed it needed to verify who I was, but then pulling all of my itinerary information was genuine to see.
+2. I ask to rebook just the Seattle portion. The AI tells me X Airline's policy requires me to rebook the entire trip (or a full refund).
+3. Given current fuel prices (due to certain world events), and that I leave in just a month, I reluctantly ask for a new flight plan, taking the opportunity to prefer an earlier departure. After a few attempts of failing to find anything and re-prompting with different dates, it finally found my exact itinerary, but departing a week earlier. It couldn't answer if there would be any surcharge, but I gave up and left the rest to the AI.
+4. The next day, I come back to the chat and the AI agent apparently just learnt that X Airline only allows rebookings within 3 days of the original departure date. I lock in with very verbose prompting, asking it to search for new flights within the given time range. Even wrote an ordered list of conditions I'm okay with sacrificing. After a few hours of painfully waiting for it to search the system and finding nothing, my face darkened with the realization that I had been trapped in an infinite loop.
+5. Defeated, I asked what options I had left. Unsurprisingly, both the Airline and the booking website say to contact the other party first. The AI agent concludes that I must either buy a new flight out of pocket or ask for a full refund and rebook myself.
+
+This failure gaslit me into feeling so powerless against the aviation industry. I overprepared my case, researched Air Passenger Protection laws, and called the airline directly. Five minutes of waiting and six minutes of conversation, the human agent rebooked my Seattle flight on the spot, free of charge.
+
+All's well that ends well I guess ¯\\(ツ)/¯. The real question is why this was the case.
+
+## Aviation is Complicated
+
+Would my situation have been fixed if I had talked to a human agent first? Or that the AI agent just needed more improvements? The fact that it seemed to “learn” about the airline's policy at the same time I did definitely saved a day's worth of headaches.
+
+If there's one takeaway from all this, it's that building truly autonomous agents is damn difficult. Sure, we already have promising tools like OpenClaw acting as a personal assistant, operating social media accounts, auto-reviewing GitHub PRs, etc., yet it feels like everyone forgets that it's humans who design the pipeline first. Developers need to first determine the behaviour before any autonomous system can follow it. Complexity only compounds when these tools need to be deployed in existing software stacks or process sensitive data.
+
+The aviation industry's IT stack is already one of the most complicated, outdated, and fragmented systems. A travel agent would already need to crawl through dozens of possible itineraries per booking, then through each airline's bespoke booking service, which then sends even more bespoke API calls to one possible Global Distribution System (Amadeus, Sabre, or Travelport). This tech stack is terrifyingly stitched together (making it so fascinating to study), without considering every airline's policies, government regulations, and international standards (IATO and all sister regulators).
+
+Here's a very simple diagrams from [Altexsoft](https://www.altexsoft.com) to illustrates the web that is the GDS.
+![Image of airline distribution systems](./airline_diagram.avif)
+
+[Wendover Productions also made a YouTube video covering this in greater detail](https://youtu.be/1-m_Jjse-cs?si=Kb9KXLzFMDdZZWbm). His analysis of Southwest's 2022 scheduling disaster due to poor weather and antiquated systems embodies the eternal struggle of modernizing tech vs the absorbing cost and effort to commit.
+![Image of Sabre commandline interface](./sabre_screenshot.avif)
+
+Designing an AI agent to manage every possible request, finding all relevant information, and interacting with the massive aviation machine is adding yet another layer of modern complexity on top of a centuries-old wedding cake. Heck, my AI agent can't even update the booking status on its own website after telling it the rebooking was completed. Seems like it couldn't communicate with the airline, even after I gave it my new booking number and all the updated information. Goes to show how much work needs to be put into Agentic agents to function completely.
+
+![Image of my booking site failing to update](./Screenshot_20260511_155718_edit.avif)
+
+Murphy's Law doesn't disappear when humans are replaced with machines making decisions for humans. We must balance the autonomy we trade away for automation with the cost of mistakes — the stress from potentially losing months of trip planning sucks a lot. Human-facing systems still need human oversight.
+
+# Hyper-Dopamine Juiced Linkedin Version
+I happened to be thinking about Agentic AI research right before experiencing it firsthand.
+
+I woke up to discover that one leg of my return flight was cancelled, so I went straight to my booking site to rebook. Customer support has been fully replaced with AI agents.
+
+At first, it felt impressive! It asked for my information and correctly identified the cancelled segment.
+
+Then the contradictions started:
+
+1. First, it told me the airline's policy required rebooking the entire trip. I spent 30 minutes with the AI to find a new flight that departs one week earlier.
+2. I asked whether I would be charged extra for the rebooking, but it couldn't give me an answer. Guess I'll find out tomorrow.
+3. The next day, the AI “learned” that rebookings were only allowed within 3 days of departure. After wasting hours of prompting, retrying, and waiting for searches, I realized I was stuck in an infinite loop.
+
+The final recommendation from the AI:
+
+- Buy a new flight out of pocket
+- Or refund everything and rebook myself
+
+This failure gaslit me into feeling so powerless against the aviation industry I overprepared my case, researched Air Passenger Protection laws, and called the airline directly:
+
+5 minutes on hold.
+6 minutes with a human agent.
+Rebooked for free.
+
+What struck me wasn't that the AI failed. It's why it failed.
+
+Modern AI agents like OpenClaw can already review PRs, act as personal assistants, and navigate software pretty damn well. Yet, this magic collapses when systems become complex, fragmented, and riddled with edge cases.
+
+Turns out, Aviation happened to be the perfect stress test:
+
+- Centuries-old legacy infrastructure spread across the globe
+- Bespoke and disconnected APIs 
+- An unpredictable world with constantly changing policies
+- Government regulations and international standards
+- Thousands of airliners and support companies sharing responsibility
+
+Throwing AI agents on top only adds another layer of complexity to this chaos. My AI agent can't even update the booking status on its own website after telling it the rebooking was completed. 
+
+Murphy's Law doesn't disappear when humans are replaced with machines making decisions for humans. We must balance the autonomy we trade away for automation with the cost of mistakes — the stress from potentially losing months of trip planning sucks a lot :\(
+
+As AI systems improve and integrate more into our lives, so do the consequences of mistakes too. Human-facing systems still need human oversight.
+
+Thankfully, everything worked out, and this summer I'll be studying in Beijing, China. If anyone else will also be job hunting or attending AI, tech, or game development conferences in the country, let's connect!

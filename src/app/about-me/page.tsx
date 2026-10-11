@@ -9,7 +9,7 @@ export default function AboutMe() {
     <div className="mx-auto flex flex-col justify-between items-center px-6 mb-2 md:max-w-7xl">
       <div className="mx-auto flex flex-col gap-x-7 mt-10 mb-10 justify-between items-center">
         <div className="flex flex-row gap-6 mb-5">
-          <Image src={ProfilePfp} alt="Profile Picture" className="rounded-lg w-auto h-auto" />
+          <Image src={ProfilePfp} alt="Profile Picture" className="rounded-lg w-3xs h-auto" />
           <div>
             <h1 className="text-left wrap text-7xl font-semibold mt-5">Ryan</h1>
             <h1 className="text-left wrap text-7xl font-semibold">Yan</h1>

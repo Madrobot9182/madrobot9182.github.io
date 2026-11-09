@@ -9,10 +9,31 @@
             <link>http://localhost:3000</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 12 May 2026 04:05:42 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 09 Nov 2026 22:23:32 GMT</lastBuildDate>
         <atom:link href="http://localhost:3000/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Tue, 12 May 2026 04:05:42 GMT</pubDate>
+        <pubDate>Mon, 09 Nov 2026 22:23:32 GMT</pubDate>
         <copyright><![CDATA[All rights reserved 2026]]></copyright>
+        <item>
+            <title><![CDATA[Backpacking Across China - The Central Plains]]></title>
+            <description><![CDATA[After finishing my summer program at Peking University, I finally left the capital to complete the last leg of the journey. Starting from Shanghai, I worked my way west through other ancient capitals, cities, and natural wonders before ending in Zhangjiajie (张家界) National Park. Multiple train rides,...]]></description>
+            <link>http://localhost:3000/blog/china-32026</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/china-32026</guid>
+            <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Backpacking Across China - Peking University and Beijing]]></title>
+            <description><![CDATA[This July, I got the opportunity to study at Peking University. My invitation to the second-largest university in China was the catalyst for this entire trip. After visiting Hong Kong, I rode an overnight sleeper train all the way to the capital. !Image of HK sleeper Beijing 北京 !Collage of Beijing A...]]></description>
+            <link>http://localhost:3000/blog/china-22026</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/china-22026</guid>
+            <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Backpacking Across China 1 - 从北到南海岸 North to South Coast]]></title>
+            <description><![CDATA[In 2025, I blogged my journey along the coast of Eastern Canada. For one month, I documented my day-to-day experience for each of the seven cities. Now, if it wasn't obvious, “Journey to the East(ern Canada)” was a parody of the famous Chinese Novel Journey to the West. So color me surprised that th...]]></description>
+            <link>http://localhost:3000/blog/china-12026</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/china-12026</guid>
+            <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[A Short Story About an AI Agent Rebooking my Flight]]></title>
             <description><![CDATA[I happened to be thinking about Agentic AI research right before experiencing it firsthand. I woke up to discover that one leg of my return flight was cancelled, so I went straight to my booking site to rebook. Customer support has been fully replaced with AI agents, which I have never actually expe...]]></description>

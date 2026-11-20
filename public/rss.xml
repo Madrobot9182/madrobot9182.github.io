@@ -9,9 +9,9 @@
             <link>http://localhost:3000</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 09 Nov 2026 22:23:32 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 20 Nov 2026 18:22:35 GMT</lastBuildDate>
         <atom:link href="http://localhost:3000/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Mon, 09 Nov 2026 22:23:32 GMT</pubDate>
+        <pubDate>Fri, 20 Nov 2026 18:22:35 GMT</pubDate>
         <copyright><![CDATA[All rights reserved 2026]]></copyright>
         <item>
             <title><![CDATA[Backpacking Across China - The Central Plains]]></title>
@@ -22,7 +22,7 @@
         </item>
         <item>
             <title><![CDATA[Backpacking Across China - Peking University and Beijing]]></title>
-            <description><![CDATA[This July, I got the opportunity to study at Peking University. My invitation to the second-largest university in China was the catalyst for this entire trip. After visiting Hong Kong, I rode an overnight sleeper train all the way to the capital. !Image of HK sleeper Beijing 北京 !Collage of Beijing A...]]></description>
+            <description><![CDATA[This July, I got the opportunity to study at Peking University. My invitation to the second-largest university in China was the catalyst for this entire trip. !Map of my second leg After visiting Hong Kong, I rode an overnight sleeper train all the way to the capital. !Image of HK sleeper Beijing 北京...]]></description>
             <link>http://localhost:3000/blog/china-22026</link>
             <guid isPermaLink="true">http://localhost:3000/blog/china-22026</guid>
             <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
